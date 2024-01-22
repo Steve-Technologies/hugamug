@@ -574,6 +574,7 @@ body.nav-active { overflow: hidden; }
   -webkit-background-clip: text;
   -webkit-text-stroke: 1px var(--gold-crayola);
   animation: loadingText linear 2s infinite;
+  text-align: center;
 }
 
 @keyframes loadingText {
