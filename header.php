@@ -53,7 +53,7 @@ foreach ($result as $row) {
     <p class="text"><?php echo $global['site_name'] ?></p>
   </div>
 
-  <div class="topbar">
+   <div class="topbar">
     <div class="container">
 
       <address class="topbar-item link">
@@ -108,7 +108,7 @@ foreach ($result as $row) {
   <header class="header" data-header>
     <div class="container">
 
-      <a href="#" class="logo">
+      <a href="<?php echo $global['domain'] ?>" class="logo">
         <img src="<?php echo $global['site_logo'] ?>" width="160" height="50" alt="<?php echo $global['site_name'] ?> - Home">
       </a>
 
@@ -125,7 +125,7 @@ foreach ($result as $row) {
         <ul class="navbar-list">
 
           <li class="navbar-item">
-            <a href="#home" class="navbar-link hover-underline active">
+            <a href="<?php echo $global['domain'] ?>" class="navbar-link hover-underline <?php echo (basename($_SERVER['PHP_SELF'])=="index.php")?'active':''?>">
               <div class="separator"></div>
 
               <span class="span">Home</span>
@@ -133,7 +133,7 @@ foreach ($result as $row) {
           </li>
 
           <li class="navbar-item">
-            <a href="#menu" class="navbar-link hover-underline">
+            <a href="<?php echo $global['domain'] ?>/menu" class="navbar-link hover-underline <?php echo (basename($_SERVER['PHP_SELF'])=="menu.php")?'active':''?>">
               <div class="separator"></div>
 
               <span class="span">Menus</span>
@@ -141,7 +141,7 @@ foreach ($result as $row) {
           </li>
 
           <li class="navbar-item">
-            <a href="#about" class="navbar-link hover-underline">
+            <a href="<?php echo $global['domain'] ?>#about" class="navbar-link hover-underline <?php echo (basename($_SERVER['PHP_SELF'])=="about.php")?'active':''?>">
               <div class="separator"></div>
 
               <span class="span">About Us</span>
@@ -157,7 +157,7 @@ foreach ($result as $row) {
           </li>
 
           <li class="navbar-item">
-            <a href="#" class="navbar-link hover-underline">
+            <a href="#" class="navbar-link hover-underline <?php echo (basename($_SERVER['PHP_SELF'])=="contact.php")?'active':''?>">
               <div class="separator"></div>
 
               <span class="span">Contact</span>
