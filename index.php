@@ -1,42 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- 
-    - primary meta tags
-  -->
-  <title>Hug A Mug - Coffee is a Hug in a Mug</title>
-  <meta name="title" content="Hug A Mug - Coffee is a Hug in a Mug">
-  <meta name="description" content="">
-
-  <!-- 
-    - favicon
-  -->
-  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml">
-
-  <!-- 
-    - google font link
-  -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&family=Forum&display=swap" rel="stylesheet">
-
-  <!-- 
-    - custom css link
-  -->
-  <link rel="stylesheet" href="./assets/css/style.css">
+<?php
+include_once('header.php')
+?>
 
   <!-- 
     - preload images
   -->
+  <head>
   <link rel="preload" as="image" href="./assets/images/hero-slider-1.jpg">
   <link rel="preload" as="image" href="./assets/images/hero-slider-2.jpg">
   <link rel="preload" as="image" href="./assets/images/hero-slider-3.jpg">
-
 </head>
 
 <body id="top">
@@ -45,10 +17,7 @@
     - #PRELOADER
   -->
 
-  <div class="preload" data-preaload>
-    <div class="circle"></div>
-    <p class="text">Hug A Mug Cafe</p>
-  </div>
+  
 
 
 
