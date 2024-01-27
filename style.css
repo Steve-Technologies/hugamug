@@ -1469,7 +1469,13 @@ textarea.input-field {
 
 
 
-
+.qty-wrap {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  margin-block: 2px;
+}
 
 /*-----------------------------------*\
   #MEDIA QUERIES
@@ -1619,6 +1625,7 @@ textarea.input-field {
     gap: 20px;
     margin-block: 2px;
   }
+
 
   .menu-card .badge { margin-block-start: 0; }
 
