@@ -1,7 +1,3 @@
-'use strict';
-
-
-
 /**
  * PRELOAD
  * 
@@ -23,7 +19,8 @@ window.addEventListener("load", function () {
 
 const addEventOnElements = function (elements, eventType, callback) {
   for (let i = 0, len = elements.length; i < len; i++) {
-    elements[i].addEventListener(eventType, callback);
+    if(elements[i]){
+    elements[i].addEventListener(eventType, callback);}
   }
 }
 
@@ -93,9 +90,12 @@ let currentSlidePos = 0;
 let lastActiveSliderItem = heroSliderItems[0];
 
 const updateSliderPos = function () {
-  lastActiveSliderItem.classList.remove("active");
-  heroSliderItems[currentSlidePos].classList.add("active");
-  lastActiveSliderItem = heroSliderItems[currentSlidePos];
+  if(lastActiveSliderItem){
+  lastActiveSliderItem.classList.remove("active");}
+  if(heroSliderItems[currentSlidePos]){
+  heroSliderItems[currentSlidePos].classList.add("active");}
+  if(heroSliderItems[currentSlidePos]){
+  lastActiveSliderItem = heroSliderItems[currentSlidePos];}
 }
 
 const slideNext = function () {
@@ -107,8 +107,8 @@ const slideNext = function () {
 
   updateSliderPos();
 }
-
-heroSliderNextBtn.addEventListener("click", slideNext);
+if(heroSliderNextBtn){
+heroSliderNextBtn.addEventListener("click", slideNext);}
 
 const slidePrev = function () {
   if (currentSlidePos <= 0) {
@@ -119,8 +119,8 @@ const slidePrev = function () {
 
   updateSliderPos();
 }
-
-heroSliderPrevBtn.addEventListener("click", slidePrev);
+if(heroSliderPrevBtn){
+heroSliderPrevBtn.addEventListener("click", slidePrev);}
 
 /**
  * auto slide
@@ -168,3 +168,57 @@ window.addEventListener("mousemove", function (event) {
   }
 
 });
+
+var select = function(s) {
+  return document.querySelector(s);
+},
+  icons = select('#icons'),crtbtn = select('#crtbtn')
+
+  var buttonTl = new TimelineMax({paused:true});
+  buttonTl.to('#closed', 1, {
+    morphSVG:{shape:'#open'},
+    ease:Elastic.easeInOut
+  })
+
+  crtbtn.addEventListener('click', function() {
+    if (buttonTl.time() > 0) {
+      buttonTl.reverse();
+      
+    } else {
+      buttonTl.play(0);
+    }
+  })
+
+  function addtocart(ele){
+    var exele = document.querySelectorAll('#cldel');
+    for ( i = 0; i < exele.length; i++)
+    exele[i].remove();
+  
+    initialimg=ele.parentNode.parentNode.parentNode.parentNode.parentNode.childNodes[1].childNodes[1].childNodes[1].childNodes[1]
+    imgnd=ele.parentNode.parentNode.parentNode.childNodes[1].childNodes[1]
+    target_parent=ele.parentNode.parentNode.parentNode.childNodes[1]
+    newimg=imgnd.cloneNode(true)
+    newimg.id='cldel';
+    initialimgpos=initialimg.getBoundingClientRect();
+    target_parent.appendChild(newimg)
+    imgpos=imgnd.getBoundingClientRect();
+    fly_img_pos = newimg.getBoundingClientRect();
+    cart_pos = crtbtn.getBoundingClientRect();
+    data = {
+      itop : imgpos.top - initialimgpos.top,
+      ileft : imgpos.left - initialimgpos.left,
+      left : cart_pos.left-  fly_img_pos.left,
+      top : cart_pos.bottom - fly_img_pos.bottom
+    }
+    console.log(data);
+    newimg.style.cssText =`
+    --itop :  ${data.itop.toFixed(2)}px;
+    --ileft :  ${data.ileft.toFixed(2)}px;
+    --left : ${data.left.toFixed(2)}px;
+    --top : ${data.top.toFixed(2)}px;
+    `;
+    newimg.classList.add("flyimg");
+    setTimeout(function(){newimg.remove()}, 1800);
+  }
+// Set their ids
+

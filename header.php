@@ -1,14 +1,5 @@
 <?php 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-include_once('connect.php');
 
-$sql = "SELECT * FROM global_variables";
-$result = $conn->query($sql);
-$global = array();
-foreach ($result as $row) {
-    $global[$row['name']] = $row['value'];
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,7 +31,7 @@ foreach ($result as $row) {
   <!-- 
     - custom css link
   -->
-  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="style.css">
   <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </head>
 

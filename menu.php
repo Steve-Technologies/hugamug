@@ -1,5 +1,8 @@
 <?php 
+require 'functions.php';
 include_once('header.php');
+$sql = "SELECT * FROM products";
+$result = $conn->query($sql);
 ?>
 <body>
 <!-- 
@@ -13,29 +16,40 @@ include_once('header.php');
           <h2 class="headline-1 section-title text-center">Delicious Menu</h2>
 
           <ul class="grid-list">
-
+            <?php  
+          foreach ($result as $row) {
+            $row['price']=formatPrice($row['price'])
+    ?>
+  
             <li>
               <div class="menu-card hover:card">
 
-                <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
-                  <img src="./assets/images/menu-1.png" width="100" height="100" loading="lazy" alt="Greek Salad"
-                    class="img-cover">
+                <figure class="card-banner img-holder" style="width: 100px; height: 100px;">
+                  <img src="<?php echo $row['img_url']?>" width="100" height="100" loading="lazy" alt="<?php echo $row['name'] ?>"
+                    class="img-cover" style="position: absolute;width:100px;height:100px;z-index:100;">
                 </figure>
 
                 <div>
 
                   <div class="title-wrapper">
                     <h3 class="title-3">
-                      <a href="#" class="card-title">Greek Salad</a>
+                      <a href="#" class="card-title"><?php echo $row['name'] ?></a>
                     </h3>
+                    <?php 
+                    if($row['labels']!=''){ ?>
+                    <span class="badge label-1"><?php echo $row['labels'] ?></span>
+                    <?php  } ?>
 
-                    <span class="badge label-1">Seasonal</span>
-
-                    <span class="span title-2">$25.50</span>
+                    <span class="span title-2"><?php echo $global['currency_symbol'] ?> <?php echo $row['price'] ?></span>
+                  </div>
+                  <div class="qty-wrap">
+                    <button class="qtybtn " onclick="addtocart(this)">+</button>
+                    <span class="title-3">0</span>
+                    <button class="qtybtn ">-</button>
                   </div>
 
                   <p class="card-text label-1">
-                    Tomatoes, green bell pepper, sliced cucumber onion, olives, and feta cheese.
+                  <?php echo $row['short_desc'] ?>
                   </p>
 
                 </div>
@@ -43,143 +57,9 @@ include_once('header.php');
               </div>
             </li>
 
-            <li>
-              <div class="menu-card hover:card">
-
-                <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
-                  <img src="./assets/images/menu-2.png" width="100" height="100" loading="lazy" alt="Lasagne"
-                    class="img-cover">
-                </figure>
-
-                <div>
-
-                  <div class="title-wrapper">
-                    <h3 class="title-3">
-                      <a href="#" class="card-title">Lasagne</a>
-                    </h3>
-
-                    <span class="span title-2">$40.00</span>
-                  </div>
-
-                  <p class="card-text label-1">
-                    Vegetables, cheeses, ground meats, tomato sauce, seasonings and spices
-                  </p>
-
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="menu-card hover:card">
-
-                <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
-                  <img src="./assets/images/menu-3.png" width="100" height="100" loading="lazy" alt="Butternut Pumpkin"
-                    class="img-cover">
-                </figure>
-
-                <div>
-
-                  <div class="title-wrapper">
-                    <h3 class="title-3">
-                      <a href="#" class="card-title">Butternut Pumpkin</a>
-                    </h3>
-
-                    <span class="span title-2">$10.00</span>
-                  </div>
-
-                  <p class="card-text label-1">
-                    Typesetting industry lorem Lorem Ipsum is simply dummy text of the priand.
-                  </p>
-
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="menu-card hover:card">
-
-                <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
-                  <img src="./assets/images/menu-4.png" width="100" height="100" loading="lazy" alt="Tokusen Wagyu"
-                    class="img-cover">
-                </figure>
-
-                <div>
-
-                  <div class="title-wrapper">
-                    <h3 class="title-3">
-                      <a href="#" class="card-title">Tokusen Wagyu</a>
-                    </h3>
-
-                    <span class="badge label-1">New</span>
-
-                    <span class="span title-2">$39.00</span>
-                  </div>
-
-                  <p class="card-text label-1">
-                    Vegetables, cheeses, ground meats, tomato sauce, seasonings and spices.
-                  </p>
-
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="menu-card hover:card">
-
-                <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
-                  <img src="./assets/images/menu-5.png" width="100" height="100" loading="lazy" alt="Olivas Rellenas"
-                    class="img-cover">
-                </figure>
-
-                <div>
-
-                  <div class="title-wrapper">
-                    <h3 class="title-3">
-                      <a href="#" class="card-title">Olivas Rellenas</a>
-                    </h3>
-
-                    <span class="span title-2">$25.00</span>
-                  </div>
-
-                  <p class="card-text label-1">
-                    Avocados with crab meat, red onion, crab salad stuffed red bell pepper and green bell pepper.
-                  </p>
-
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="menu-card hover:card">
-
-                <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
-                  <img src="./assets/images/menu-6.png" width="100" height="100" loading="lazy" alt="Opu Fish"
-                    class="img-cover">
-                </figure>
-
-                <div>
-
-                  <div class="title-wrapper">
-                    <h3 class="title-3">
-                      <a href="#" class="card-title">Opu Fish</a>
-                    </h3>
-
-                    <span class="span title-2">$49.00</span>
-                  </div>
-
-                  <p class="card-text label-1">
-                    Vegetables, cheeses, ground meats, tomato sauce, seasonings and spices
-                  </p>
-
-                </div>
-
-              </div>
-            </li>
-
+            <?php
+          }
+            ?>
           </ul>
 
           <img src="./assets/images/shape-5.png" width="921" height="1036" loading="lazy" alt="shape"
