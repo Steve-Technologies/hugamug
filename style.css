@@ -20,7 +20,7 @@
    * COLORS
    */
 
-  --gold-crayola: hsl(38, 61%, 73%);
+  --gold-crayola: #e4c590;
   --hugamug-bg-blue: #106e81;
   --quick-silver: hsla(0, 0%, 65%, 1);
   --davys-grey: hsla(30, 3%, 34%, 1);
@@ -1434,8 +1434,8 @@ textarea.input-field {
 }
 .cart-btn {
   position: fixed;
-  bottom: 20px;
-  right: 30px;
+  bottom: 30px;
+  right: 40px;
   background-color: var(--gold-crayola);
   color: var(--smoky-black-1);
   font-size: 22px;

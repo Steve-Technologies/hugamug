@@ -12,11 +12,9 @@ window.addEventListener("load", function () {
 });
 
 
-
 /**
  * add event listener on multiple elements
  */
-
 const addEventOnElements = function (elements, eventType, callback) {
   for (let i = 0, len = elements.length; i < len; i++) {
     if(elements[i]){
@@ -75,7 +73,7 @@ window.addEventListener("scroll", function () {
   }
 });
 
-
+const goldcrayola = '#e4c590';
 
 /**
  * HERO SLIDER
@@ -180,20 +178,37 @@ var select = function(s) {
     ease:Elastic.easeInOut
   })
 
-  crtbtn.addEventListener('click', function() {
-    if (buttonTl.time() > 0) {
-      buttonTl.reverse();
-      
-    } else {
-      buttonTl.play(0);
-    }
-  })
+
+function animcart() {
+  if (buttonTl.time() > 0) {
+    buttonTl.reverse();
+    crtbtn.style.scale=1.4
+    crtbtn.style.backgroundColor=goldcrayola;
+  } else {
+    crtbtn.style.scale=2
+    crtbtn.style.backgroundColor = 'white';
+    buttonTl.play(0);
+  }
+}
+
+function isCartOpen(){
+if (buttonTl.time() > 0) {
+  return true
+} else {
+  return false
+}}
+
+crtbtn.addEventListener('click', animcart);
+
 
   function addtocart(ele){
+    if(!isCartOpen())
+    {
+      animcart();
+    }
     // var exele = document.querySelectorAll('#cldel');
     // for ( i = 0; i < exele.length; i++)
     // exele[i].remove();
-  
     initialimg=ele.parentNode.parentNode.parentNode.parentNode.parentNode.childNodes[1].childNodes[1].childNodes[1].childNodes[1]
     imgnd=ele.parentNode.parentNode.parentNode.childNodes[1].childNodes[1]
     target_parent=ele.parentNode.parentNode.parentNode.childNodes[1]
@@ -228,7 +243,14 @@ var select = function(s) {
     setTimeout(function(){
       document.querySelector(qrs).remove();
       console.log('deleted');
-  }, 1800);
+  
+  if(document.querySelector('.flyimg')==null)
+  {
+    if(isCartOpen())
+    {
+      animcart();
+    }
+  }}, 1800);
   }
 
 // Set their ids
