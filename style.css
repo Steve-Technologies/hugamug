@@ -402,7 +402,6 @@ body.nav-active { overflow: hidden; }
   position: relative;
   padding-block: var(--section-space);
   overflow: hidden;
-  z-index: 1;
 }
 
 .bg-black-10 { background-color: var(--smoky-black-2); }
@@ -1449,7 +1448,7 @@ textarea.input-field {
   transition: var(--transition-1);
   opacity: 0;
   visibility: hidden;
-  z-index: 4;
+  z-index: 10;
   scale:1.4
 }
 
@@ -2197,7 +2196,8 @@ textarea.input-field {
 .flyimg{
   width:100px;
   height:auto;
-  position: absolute;
+  position:fixed;
+  top: var(--topoff);
   z-index: 10!important;
   animation: fly 2s ease-in;
   animation-fill-mode: forwards;

@@ -26,7 +26,7 @@ $result = $conn->query($sql);
 
                 <figure class="card-banner img-holder" style="width: 100px; height: 100px;">
                   <img src="<?php echo $row['img_url']?>" width="100" height="100" loading="lazy" alt="<?php echo $row['name'] ?>"
-                    class="img-cover" style="position: absolute;width:100px;height:100px;z-index:100;">
+                    class="img-cover" style="position: absolute;width:100px;height:100px;z-index:1;">
                 </figure>
 
                 <div>

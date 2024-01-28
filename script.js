@@ -190,15 +190,16 @@ var select = function(s) {
   })
 
   function addtocart(ele){
-    var exele = document.querySelectorAll('#cldel');
-    for ( i = 0; i < exele.length; i++)
-    exele[i].remove();
+    // var exele = document.querySelectorAll('#cldel');
+    // for ( i = 0; i < exele.length; i++)
+    // exele[i].remove();
   
     initialimg=ele.parentNode.parentNode.parentNode.parentNode.parentNode.childNodes[1].childNodes[1].childNodes[1].childNodes[1]
     imgnd=ele.parentNode.parentNode.parentNode.childNodes[1].childNodes[1]
     target_parent=ele.parentNode.parentNode.parentNode.childNodes[1]
     newimg=imgnd.cloneNode(true)
-    newimg.id='cldel';
+    newimg.id='fli'+makeid(5);
+    topoff= target_parent.getBoundingClientRect().top;
     initialimgpos=initialimg.getBoundingClientRect();
     target_parent.appendChild(newimg)
     imgpos=imgnd.getBoundingClientRect();
@@ -208,7 +209,8 @@ var select = function(s) {
       itop : imgpos.top - initialimgpos.top,
       ileft : imgpos.left - initialimgpos.left,
       left : cart_pos.left-  fly_img_pos.left,
-      top : cart_pos.bottom - fly_img_pos.bottom
+      top : cart_pos.bottom - fly_img_pos.bottom,
+      topof: topoff
     }
     console.log(data);
     newimg.style.cssText =`
@@ -216,9 +218,29 @@ var select = function(s) {
     --ileft :  ${data.ileft.toFixed(2)}px;
     --left : ${data.left.toFixed(2)}px;
     --top : ${data.top.toFixed(2)}px;
+    --topoff : ${data.topof.toFixed(2)}px;
     `;
     newimg.classList.add("flyimg");
-    setTimeout(function(){newimg.remove()}, 1800);
+    Timeout('#'+newimg.id)
+    
   }
+  function Timeout(qrs) {
+    setTimeout(function(){
+      document.querySelector(qrs).remove();
+      console.log('deleted');
+  }, 1800);
+  }
+
 // Set their ids
 
+function makeid(length) {
+  let result = '';
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  const charactersLength = characters.length;
+  let counter = 0;
+  while (counter < length) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    counter += 1;
+  }
+  return result;
+}
