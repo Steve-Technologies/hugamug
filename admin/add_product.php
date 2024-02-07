@@ -1,11 +1,12 @@
 <?php 
 require('../functions.php');
+require './assets/image_selector/image_selector.php';
 if ($_POST) {
     // Retrieving form data
     $productName = $_POST['productName'];
     $price = $_POST['price'];
     $shortDescription = $_POST['shortDescription'];
-    $imageUrl = $_POST['imageUrl'];
+    $img_id = $_POST['img_id'];
     $stock = $_POST['stock'];
     $category = $_POST['category'];
     $subCategory = $_POST['subCategory'];
@@ -14,12 +15,12 @@ if ($_POST) {
     $labels = $_POST['labels'];
     $isFeatured = $_POST['isFeatured'];
 
-    $sql = "INSERT INTO products (name, price, short_desc, img_url, stock, category, sub_category, is_alcohol, sale_price, labels, is_featured)
+    $sql = "INSERT INTO products (name, price, short_desc, img_id, stock, category, sub_category, is_alcohol, sale_price, labels, is_featured)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = $conn->prepare($sql);
 
     // Bind parameters
-    $stmt->bind_param("ssssisssiss", $productName, $price, $shortDescription, $imageUrl, $stock, $category, $subCategory, $isAlcoholic, $salePrice, $labels, $isFeatured);
+    $stmt->bind_param("sssiisssiss", $productName, $price, $shortDescription, $img_id, $stock, $category, $subCategory, $isAlcoholic, $salePrice, $labels, $isFeatured);
 
     // Execute the statement
     if ($stmt->execute()) {
@@ -96,8 +97,7 @@ if ($_POST) {
       <textarea class="form-control" id="shortDescription" name="shortDescription" rows="3" maxlength="250" required></textarea>
     </div>
     <div class="form-group">
-      <label for="imageUrl">Image URL</label>
-      <input type="text" class="form-control" id="imageUrl" name="imageUrl" required>
+      <?php echo get_image_selector('./assets/image_selector/image_selector.css','./assets/image_selector/image_selector.js'); ?>
     </div>
     <div class="form-group">
       <label for="stock">Stock</label>

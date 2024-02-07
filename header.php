@@ -100,7 +100,7 @@
     <div class="container">
 
       <a href="<?php echo $global['domain'] ?>" class="logo">
-        <img src="<?php echo $global['site_logo'] ?>" width="160" height="50" alt="<?php echo $global['site_name'] ?> - Home">
+        <img src="<?php echo get_image_from_id($global['site_logo'],'thumbnail'); ?>" width="160" height="50" alt="<?php echo $global['site_name'] ?> - Home">
       </a>
 
       <nav class="navbar" data-navbar>
@@ -110,7 +110,7 @@
         </button>
 
         <a href="#" class="logo">
-          <img src="<?php echo $global['site_logo'] ?>" width="160" height="50" alt="<?php echo $global['site_name'] ?> - Home">
+          <img src="<?php echo get_image_from_id($global['site_logo'],'thumbnail'); ?>" width="160" height="50" alt="<?php echo $global['site_name'] ?> - Home">
         </a>
 
         <ul class="navbar-list">

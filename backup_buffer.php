@@ -35,22 +35,25 @@ include_once('header.php');
              $sliders=json_decode($row['value']);}
 
              foreach($sliders as $slider){
+              echo $slider->id.'<br>'.$slider->image_id.'<br>'.$slider->smtitle;
+             echo '<br><br>';}
           ?>
 
-          <li class="slider-item <?php if($slider->id==1){echo'active';}?>" data-hero-slider-item>
+          <li class="slider-item active" data-hero-slider-item>
 
             <div class="slider-bg">
-              <img src="<?php echo get_image_from_id($slider->image_id,'large') ?>" width="1880" height="950" alt="" class="img-cover">
+              <img src="./assets/images/hero-slider-1.jpg" width="1880" height="950" alt="" class="img-cover">
             </div>
 
-            <p class="label-2 section-subtitle slider-reveal"><?php echo $slider->smtitle; ?></p>
+            <p class="label-2 section-subtitle slider-reveal">Tradational & Hygine</p>
 
             <h1 class="display-1 hero-title slider-reveal">
-            <?php echo $slider->ltitle; ?>
+              For the love of <br>
+              delicious food
             </h1>
 
             <p class="body-2 hero-text slider-reveal">
-            <?php echo $slider->subtitle; ?>
+              Come with family & feel the joy of mouthwatering food
             </p>
 
             <a href="#" class="btn btn-primary slider-reveal">
@@ -60,9 +63,56 @@ include_once('header.php');
             </a>
 
           </li>
-          <?php } 
-          ?>
 
+          <li class="slider-item" data-hero-slider-item>
+
+            <div class="slider-bg">
+              <img src="./assets/images/hero-slider-2.jpg" width="1880" height="950" alt="" class="img-cover">
+            </div>
+
+            <p class="label-2 section-subtitle slider-reveal">delightful experience</p>
+
+            <h1 class="display-1 hero-title slider-reveal">
+              Flavors Inspired by <br>
+              the Seasons
+            </h1>
+
+            <p class="body-2 hero-text slider-reveal">
+              Come with family & feel the joy of mouthwatering food
+            </p>
+
+            <a href="#" class="btn btn-primary slider-reveal">
+              <span class="text text-1">View Our Menu</span>
+
+              <span class="text text-2" aria-hidden="true">View Our Menu</span>
+            </a>
+
+          </li>
+
+          <li class="slider-item" data-hero-slider-item>
+
+            <div class="slider-bg">
+              <img src="./assets/images/hero-slider-3.jpg" width="1880" height="950" alt="" class="img-cover">
+            </div>
+
+            <p class="label-2 section-subtitle slider-reveal">amazing & delicious</p>
+
+            <h1 class="display-1 hero-title slider-reveal">
+              Where every flavor <br>
+              tells a story
+            </h1>
+
+            <p class="body-2 hero-text slider-reveal">
+              Come with family & feel the joy of mouthwatering food
+            </p>
+
+            <a href="#" class="btn btn-primary slider-reveal">
+              <span class="text text-1">View Our Menu</span>
+
+              <span class="text text-2" aria-hidden="true">View Our Menu</span>
+            </a>
+
+          </li>
 
         </ul>
 

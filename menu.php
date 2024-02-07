@@ -25,7 +25,7 @@ $result = $conn->query($sql);
               <div class="menu-card hover:card">
 
                 <figure class="card-banner img-holder" style="width: 100px; height: 100px;">
-                  <img src="<?php echo $row['img_url']?>" width="100" height="100" loading="lazy" alt="<?php echo $row['name'] ?>"
+                  <img src="<?php echo get_image_from_id($row['img_id'],'thumbnail')?>" width="100" height="100" loading="lazy" alt="<?php echo $row['name'] ?>"
                     class="img-cover" style="position: absolute;width:100px;height:100px;z-index:1;">
                 </figure>
 

@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "image_id": 29,
+        "smtitle": "Tradational & Hygine",
+        "ltitle": "For the love of <br> delicious food",
+        "subtitle": "Come with family & feel the joy of mouthwatering food"
+    },
+    {
+        "id": 2,
+        "image_id": 27,
+        "smtitle": "Delightful Experience",
+        "ltitle": "Flavors Inspired by <br> the Seasons",
+        "subtitle": "Come with family & feel the joy of mouthwatering food"
+    },
+    {
+        "id": 3,
+        "image_id": 28,
+        "smtitle": "Amazing & Delicious",
+        "ltitle": "Where every flavor <br> tells a story",
+        "subtitle": "Come with family & feel the joy of mouthwatering food"
+    }
+]
