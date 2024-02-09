@@ -53,7 +53,7 @@ include_once('header.php');
             <?php echo $slider->subtitle; ?>
             </p>
 
-            <a href="#" class="btn btn-primary slider-reveal">
+            <a href="#" class="btn btn-hmprimary slider-reveal">
               <span class="text text-1">View Our Menu</span>
 
               <span class="text text-2" aria-hidden="true">View Our Menu</span>
@@ -210,7 +210,7 @@ include_once('header.php');
 
             <a href="tel:+804001234567" class="body-1 contact-number hover-underline">+80 (400) 123 4567</a>
 
-            <a href="#" class="btn btn-primary">
+            <a href="#" class="btn btn-hmprimary">
               <span class="text text-1">Read More</span>
 
               <span class="text text-2" aria-hidden="true">Read More</span>
@@ -274,7 +274,7 @@ include_once('header.php');
               <span class="span body-1">$20.00</span>
             </div>
 
-            <a href="#" class="btn btn-primary">
+            <a href="#" class="btn btn-hmprimary">
               <span class="text text-1">View All Menu</span>
 
               <span class="text text-2" aria-hidden="true">View All Menu</span>
@@ -478,7 +478,7 @@ include_once('header.php');
             During winter daily from <span class="span">7:00 pm</span> to <span class="span">9:00 pm</span>
           </p>
 
-          <a href="#" class="btn btn-primary">
+          <a href="#" class="btn btn-hmprimary">
             <span class="text text-1">View All Menu</span>
 
             <span class="text text-2" aria-hidden="true">View All Menu</span>
@@ -820,7 +820,7 @@ include_once('header.php');
 
           </ul>
 
-          <a href="#" class="btn btn-primary">
+          <a href="#" class="btn btn-hmprimary">
             <span class="text text-1">View Our Blog</span>
 
             <span class="text text-2" aria-hidden="true">View Our Blog</span>

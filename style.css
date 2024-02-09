@@ -1085,15 +1085,21 @@ body.nav-active { overflow: hidden; }
 .menu-card .qtybtn {
   background-color: var(--gold-crayola);
   color: var(--eerie-black-1);
-  font-family: var(--fontFamily-forum);
+  font-family: var(--fontFamily-dm_sans);
   max-width: max-content;
   line-height: var(--lineHeight-6);
   text-transform: uppercase;
   padding-inline: 10px;
   margin-block-start: 10px;
-  font-size: 2rem;
+  font-size: 1.4rem;
   border-radius: 6px;
   margin: 0px;
+  transform: scale(1) ;
+  -webkit-transition: transform 0.25s ease-in-out;
+}
+.menu-card .qtybtn:hover {
+  transform: scale(1.25) ;
+  -webkit-transition: transform 0.25s ease-in-out;
 }
 
 .menu-card .span {
@@ -2249,4 +2255,27 @@ textarea.input-field {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 4; /* Ensure the spinner appears on top of the overlay */
+}
+.modal-content{
+  background-color: var(--smoky-black-1);
+}
+.menu-card.cart-item{
+  padding:5px;
+  background-color: #1f1f1f ;
+  border-radius: 20px;
+}
+.cart-item>div>.qty-wrap{
+  justify-content: center!important;
+}
+@media screen and (max-width: 550px){
+  .cart-item>div>p{
+    display: none;
+  }
+  .title-wrapper{
+    display: flex;
+    gap:20px
+  }
+.badge{
+    display: none;
+  }
 }

@@ -43,9 +43,9 @@ $result = $conn->query($sql);
                     <span class="span title-2"><?php echo $global['currency_symbol'] ?> <?php echo $row['price'] ?></span>
                   </div>
                   <div class="qty-wrap">
-                  <button class="qtybtn ">-</button>
-                    <span class="title-3">0</span>
-                    <button class="qtybtn " value=<?php echo $row['id']?> onclick="addtocart(this)">+</button>
+                  <!-- <button class="qtybtn ">-</button>
+                    <span class="title-3">0</span> -->
+                    <button class="qtybtn " value=<?php echo $row['id']?> onclick="addtocart(this)">Add to Cart</button>
                   </div>
 
                   <p class="card-text label-1">

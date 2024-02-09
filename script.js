@@ -198,7 +198,28 @@ if (buttonTl.time() > 0) {
   return false
 }}
 
-crtbtn.addEventListener('click', animcart);
+crtbtn.addEventListener('click', open_cart);
+function open_cart()
+{
+  $('#cart-modal').modal('show');
+}
+function close_cart()
+{
+  $('#cart-modal').modal('hide');
+}
+$('#cart-modal').on('hide.bs.modal', function (e) {
+  if(isCartOpen())
+    {
+      animcart();
+    }
+})
+
+$('#cart-modal').on('show.bs.modal', function (e) {
+  if(!isCartOpen())
+    {
+      animcart();
+    }
+})
 
 function animate_add_to_cart(ele){
   if(!isCartOpen())
