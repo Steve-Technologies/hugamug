@@ -8,6 +8,21 @@ $global = array();
 foreach ($result as $row) {
     $global[$row['name']] = $row['value'];
 }
+
+global $USER;
+if(!isset($_SESSION)) {
+    session_start();
+    $_SESSION['role']="public";
+    $_SESSION['request']="allow";
+}
+if(isset( $_SESSION['user_id']))
+{
+    $prosql = "SELECT * FROM user WHERE user_id = $current_user_id";
+    $result = $conn->query($prosql);
+    $USER = $result->fetch_assoc();
+    $_SESSION['role']=$USER['role'];
+}
+
 function formatPrice($priceString) {
     // Check if the string contains a decimal point
     if (strpos($priceString, '.') !== false) {
@@ -167,4 +182,36 @@ function sanitize_asset_url($url)
     return $newurl;
 }
 
+function authenticate($credentials)
+{
+    GLOBAL $conn;
+    $invalidcred =true;
+    $identifier = $credentials['identifier'];
+    $password = $credentials['password'];
+    $sql = "SELECT * FROM users WHERE username = ? OR email = ? OR billing_phone = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("sss",$identifier,$identifier,$identifier);
+    if (!$stmt->execute()) {
+        die("Error: " . $stmt->error);
+      }
+    $result = $stmt->get_result();
+      $user = $result->fetch_assoc();
+      if($user)
+      {
+        if(password_verify($password,$user['password']))
+        {
+            session_start();
+            session_regenerate_id();
+            $_SESSION["user_id"]= $user['id'];
+            header("Location: admin_panel.php");
+            exit;
+            
+        }
+        else
+        {
+            $invalidcred =true;
+        }
+      }
+      return $invalidcred;
+}
 ?>

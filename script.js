@@ -200,9 +200,8 @@ if (buttonTl.time() > 0) {
 
 crtbtn.addEventListener('click', animcart);
 
-
-  function addtocart(ele){
-    if(!isCartOpen())
+function animate_add_to_cart(ele){
+  if(!isCartOpen())
     {
       animcart();
     }
@@ -227,7 +226,6 @@ crtbtn.addEventListener('click', animcart);
       top : cart_pos.bottom - fly_img_pos.bottom,
       topof: topoff
     }
-    console.log(data);
     newimg.style.cssText =`
     --itop :  ${data.itop.toFixed(2)}px;
     --ileft :  ${data.ileft.toFixed(2)}px;
@@ -237,12 +235,16 @@ crtbtn.addEventListener('click', animcart);
     `;
     newimg.classList.add("flyimg");
     Timeout('#'+newimg.id)
-    
+}
+
+  function addtocart(ele){
+   send_add_cart_data(ele);
   }
+
   function Timeout(qrs) {
     setTimeout(function(){
       document.querySelector(qrs).remove();
-      console.log('deleted');
+
   
   if(document.querySelector('.flyimg')==null)
   {
@@ -265,4 +267,55 @@ function makeid(length) {
     counter += 1;
   }
   return result;
+}
+
+function send_add_cart_data(ele){
+  var success=false;
+  value = ele.value;
+  menu_section = document.querySelector('.menu');
+  menu_section.inert = true;
+  toggleLoading(menu_section);
+
+  var xhr = new XMLHttpRequest();
+    
+    // Define the request parameters
+    xhr.open("POST", "./add_to_cart.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    
+    // Define the callback function for when the request completes
+    xhr.onload = function() {
+        // Re-enable the button
+        menu_section.inert = false;
+        
+        // Check if the request was successful
+        if (xhr.status >= 200 && xhr.status < 300) {
+            // Request was successful, handle response if needed
+            data = JSON.parse(xhr.responseText);
+            if(data=="Success"){
+            toggleLoading(menu_section);
+            animate_add_to_cart(ele);}
+        } else {
+            // Request failed, handle error if needed
+        }
+    };
+    
+    // Send the request with the data
+    xhr.send("data=" + encodeURIComponent(value));
+    return success;
+}
+
+
+function toggleLoading(div) {
+  var overlay = div.querySelector('.loading-overlay');
+  if (!overlay) {
+      overlay = document.createElement('div');
+      overlay.className = 'loading-overlay';
+      overlay.innerHTML = `<div class="spinner"><div class="preload" data-preaload>
+      <lottie-player src="assets/lottie/coffee-loader.json" background="transparent"  speed="0.5"  style="width: 300px; height: 300px;" loop autoplay></lottie-player>
+      </div></div>`; // You can use any loading spinner icon here
+      div.insertBefore(overlay, div.firstChild);
+  }
+  else if(overlay){
+  overlay.style.display = overlay.style.display === 'none' ? 'block' : 'none';
+  }
 }
