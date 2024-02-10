@@ -45,7 +45,7 @@ $result = $conn->query($sql);
                   <div class="qty-wrap">
                   <!-- <button class="qtybtn ">-</button>
                     <span class="title-3">0</span> -->
-                    <button class="qtybtn " value=<?php echo $row['id']?> onclick="addtocart(this)">Add to Cart</button>
+                    <button class="qtybtn " value=<?php echo $row['id']?> data-operation='add'  data-place='catalogue' onclick="mod_cart_cat(this)">Add to Cart</button>
                   </div>
                   <p class="card-text label-1">
                   <?php echo $row['short_desc'] ?>

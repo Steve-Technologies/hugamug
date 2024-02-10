@@ -2,5 +2,6 @@
 // error_reporting(E_ALL);
 // ini_set('display_errors', 1);
 require './functions.php';
-print_r($_SESSION);
+session_destroy();
+global $USER;
 ?>

@@ -203,7 +203,9 @@ function open_cart()
 {
   $('#cart-modal').modal('show');
 }
-$('#cart-modal').on('show.bs.modal', function (e) {
+$('#cart-modal').on('show.bs.modal', get_cart);
+
+function get_cart(){
   cart_body=document.querySelector('#cart-body');
   toggleLoading(cart_body);
   // Use AJAX to get image options from the server (PHP endpoint)
@@ -224,7 +226,7 @@ $('#cart-modal').on('show.bs.modal', function (e) {
     {
       animcart();
     }
-});
+}
 
 function update_cart(cart_data){
   cart_body=document.querySelector('#cart-container');
@@ -302,6 +304,12 @@ function update_cart(cart_data){
       var minusBtn = document.createElement("button");
       minusBtn.classList.add("qtybtn");
       minusBtn.textContent = "-";
+      minusBtn.dataset.operation='remove';
+      minusBtn.dataset.place='cart';
+      minusBtn.value=item.id
+      minusBtn.onclick = function() {
+        mod_cart(this,cart_body);
+    };
       qtyWrap.appendChild(minusBtn);
 
       var qtySpan = document.createElement("span");
@@ -312,9 +320,11 @@ function update_cart(cart_data){
       var plusBtn = document.createElement("button");
       plusBtn.classList.add("qtybtn");
       plusBtn.textContent = "+";
-      plusBtn.value = "1";
+      plusBtn.value = item.id;
+      plusBtn.dataset.operation='add';
+      plusBtn.dataset.place='cart';
       plusBtn.onclick = function() {
-          addtocart(this);
+          mod_cart(this,cart_body);
       };
       qtyWrap.appendChild(plusBtn);
 
@@ -336,6 +346,7 @@ function update_cart(cart_data){
 cart_body.appendChild(menuCard);
   });
   mcart_body=document.querySelector('#cart-body');
+  $('#cart-modal').modal('handleUpdate')
   toggleLoading(mcart_body);
 }
 
@@ -389,9 +400,6 @@ function animate_add_to_cart(ele){
     Timeout('#'+newimg.id)
 }
 
-  function addtocart(ele){
-   send_add_cart_data(ele);
-  }
 
   function Timeout(qrs) {
     setTimeout(function(){
@@ -421,17 +429,18 @@ function makeid(length) {
   return result;
 }
 
-function send_add_cart_data(ele){
+function mod_cart(ele,menu_section){
   var success=false;
+  operation = ele.dataset.operation;
+  place = ele.dataset.place;
   value = ele.value;
-  menu_section = document.querySelector('.menu');
   menu_section.inert = true;
   toggleLoading(menu_section);
 
   var xhr = new XMLHttpRequest();
     
     // Define the request parameters
-    xhr.open("POST", "./add_to_cart.php", true);
+    xhr.open("POST", "./mod_cart.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     
     // Define the callback function for when the request completes
@@ -444,15 +453,17 @@ function send_add_cart_data(ele){
             // Request was successful, handle response if needed
             data = JSON.parse(xhr.responseText);
             if(data=="Success"){
+            get_cart();
             toggleLoading(menu_section);
-            animate_add_to_cart(ele);}
+            if(operation=="add" && place=="catalogue"){
+            animate_add_to_cart(ele);}}
         } else {
             // Request failed, handle error if needed
         }
     };
     
     // Send the request with the data
-    xhr.send("data=" + encodeURIComponent(value));
+    xhr.send("data=" + encodeURIComponent(value) + "&operation=" + encodeURIComponent(operation));
     return success;
 }
 
@@ -476,4 +487,10 @@ function removeAllChildNodes(parent) {
   while (parent.firstChild) {
       parent.removeChild(parent.firstChild);
   }
+}
+
+function mod_cart_cat(ele)
+{
+  menu_sect= document.querySelector("#menu");
+  mod_cart(ele,menu_sect);
 }
