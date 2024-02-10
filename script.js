@@ -250,7 +250,7 @@ function update_cart(cart_data){
 
         // Append the emptyMessageDiv to the document body or any other parent element
 
-  if(cart_data.length!=0){
+  if(cart_data.items.length!=0){
   cart_body.classList.remove('empty-cart');
 
   removeAllChildNodes(cart_body);
@@ -368,12 +368,16 @@ function update_cart(cart_data){
       menuCard.appendChild(contentDiv);
 
 cart_body.appendChild(menuCard);
+sub_total=document.querySelector('#subtotal');
+sub_total.innerText=cart_data.sub_total;
   });
 }
 else{
   cart_body.classList.add('empty-cart');
   removeAllChildNodes(cart_body);
   cart_body.appendChild(emptyMessageDiv);
+  sub_total=document.querySelector('#subtotal');
+  sub_total.innerText=cart_data.sub_total;
 }
   mcart_body=document.querySelector('#cart-body');
   $('#cart-modal').modal('handleUpdate')

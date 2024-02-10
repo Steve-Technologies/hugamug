@@ -155,7 +155,10 @@
       
         <!-- item ends -->
 
-
+        <div id="subtotal-container">
+          <h3>Subtotal</h3>
+          <h3 id="subtotal">TZS 0.00</h3>
+        </div>
       </div>
       <div class="modal-footer d-flex justify-content-center">
         <button type="button" class="btn">Checkout</button>

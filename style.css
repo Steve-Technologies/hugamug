@@ -2320,3 +2320,11 @@ textarea.input-field {
  }
  @media screen and (min-width: 992px) { 
  .grid-list { grid-template-columns: 1fr 1fr; }}
+
+ #subtotal-container{
+  display: flex;
+  justify-content: space-between;
+  padding: 1.25rem;
+  border-top: white solid 0.2rem;
+  margin: 0.5rem;
+ }

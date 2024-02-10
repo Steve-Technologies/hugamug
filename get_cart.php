@@ -26,11 +26,13 @@ $sub_total_fin = $global['currency_symbol'].' '.formatPrice($sub_total);
 if(isset($full_cart_items)){
 $cart=array("items"=>$full_cart_items, "sub_total"=>$sub_total_fin);}
 if(!isset($full_cart_items)){
-    $cart=array();
+    $sub_total_fin = $global['currency_symbol'].' '.formatPrice(0);
+    $cart=array("items"=>array(),"sub_total"=>$sub_total_fin);
 }
 }
 else{
-$cart=array();}
+    $sub_total_fin = $global['currency_symbol'].' '.formatPrice(0);
+$cart=array("items"=>array(),"sub_total"=>$sub_total_fin);}
 echo json_encode($cart);
 
 
