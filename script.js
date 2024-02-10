@@ -203,15 +203,15 @@ function open_cart()
 {
   $('#cart-modal').modal('show');
 }
-
 $('#cart-modal').on('show.bs.modal', function (e) {
+  cart_body=document.querySelector('#cart-body');
+  toggleLoading(cart_body);
   // Use AJAX to get image options from the server (PHP endpoint)
   const xhr = new XMLHttpRequest();
   xhr.onreadystatechange = function () {
       if (xhr.readyState === XMLHttpRequest.DONE) {
           if (xhr.status === 200) {
               const cart = JSON.parse(xhr.responseText);
-              console.log(cart);
               update_cart(cart);
           } else {
               console.error('Error fetching image options:', xhr.statusText);
@@ -330,8 +330,9 @@ function update_cart(cart_data){
       menuCard.appendChild(contentDiv);
 
 cart_body.appendChild(menuCard);
-    console.log(item);
   });
+  mcart_body=document.querySelector('#cart-body');
+  toggleLoading(mcart_body);
 }
 
 
