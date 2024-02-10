@@ -499,18 +499,18 @@ function mod_cart(ele,menu_section){
 
 
 function toggleLoading(div) {
-  var overlay = div.querySelector('.loading-overlay');
-  if (!overlay) {
-      overlay = document.createElement('div');
-      overlay.className = 'loading-overlay';
-      overlay.innerHTML = `<div class="spinner"><div class="preload" data-preaload>
-      <lottie-player src="assets/lottie/coffee-loader.json" background="transparent"  speed="0.5"  style="width: 300px; height: 300px;" loop autoplay></lottie-player>
-      </div></div>`; // You can use any loading spinner icon here
-      div.insertBefore(overlay, div.firstChild);
-  }
-  else if(overlay){
-  overlay.style.display = overlay.style.display === 'none' ? 'block' : 'none';
-  }
+  // var overlay = div.querySelector('.loading-overlay');
+  // if (!overlay) {
+  //     overlay = document.createElement('div');
+  //     overlay.className = 'loading-overlay';
+  //     overlay.innerHTML = `<div class="spinner"><div class="preload" data-preaload>
+  //     <lottie-player src="assets/lottie/coffee-loader.json" background="transparent"  speed="0.5"  style="width: 300px; height: 300px;" loop autoplay></lottie-player>
+  //     </div></div>`; // You can use any loading spinner icon here
+  //     div.insertBefore(overlay, div.firstChild);
+  // }
+  // else if(overlay){
+  // overlay.style.display = overlay.style.display === 'none' ? 'block' : 'none';
+  // }
 }
 
 function removeAllChildNodes(parent) {
