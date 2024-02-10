@@ -1705,7 +1705,7 @@ textarea.input-field {
    * REUSED STYLE
    */
 
-  .grid-list { grid-template-columns: 1fr 1fr; }
+  /* .grid-list { grid-template-columns: 1fr 1fr; } */
 
   :is(.service, .event) .container { max-width: 820px; }
 
@@ -1907,7 +1907,6 @@ textarea.input-field {
     height: 100%;
     border-inline-start: 1px solid var(--white-alpha-20);
   }
-
 
 
   /**
@@ -2280,6 +2279,16 @@ textarea.input-field {
     display: none;
   }
 }
+@media screen and (max-width: 575px){
+  .badge{
+    display: none;
+  }
+  .title-wrapper{
+    display: flex;
+    gap:20px
+  }
+}
+
 #cart-container{
   max-height: 40rem;
   overflow-y:scroll;
@@ -2293,3 +2302,11 @@ textarea.input-field {
     display: block;
   }
 }
+@media screen and (max-width: 992px) { 
+  .grid-list {
+    display: grid;
+    gap: 40px;
+}
+ }
+ @media screen and (min-width: 992px) { 
+ .grid-list { grid-template-columns: 1fr 1fr; }}

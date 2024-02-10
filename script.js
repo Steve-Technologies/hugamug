@@ -224,6 +224,7 @@ $('#cart-modal').on('show.bs.modal', function (e) {
 
 function update_cart(cart_data){
   cart_body=document.querySelector('#cart-container');
+  removeAllChildNodes(cart_body);
   items=cart_data.items;
   items.forEach(item => {
       // Create the main div element with classes "menu-card" and "cart-item"
@@ -469,5 +470,11 @@ function toggleLoading(div) {
   }
   else if(overlay){
   overlay.style.display = overlay.style.display === 'none' ? 'block' : 'none';
+  }
+}
+
+function removeAllChildNodes(parent) {
+  while (parent.firstChild) {
+      parent.removeChild(parent.firstChild);
   }
 }
