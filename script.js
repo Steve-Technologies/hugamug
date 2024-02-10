@@ -230,7 +230,31 @@ function get_cart(){
 
 function update_cart(cart_data){
   cart_body=document.querySelector('#cart-container');
+  // Create the main div element with id "empty_message"
+        var emptyMessageDiv = document.createElement("div");
+        emptyMessageDiv.id = "empty_message";
+
+        // Create the h3 element
+        var heading = document.createElement("h3");
+        heading.textContent = "Cart is Empty";
+
+        // Create the button element
+        var viewmenu = document.createElement("a");
+        viewmenu.classList.add("btn");
+        viewmenu.textContent = "View Menu";
+        viewmenu.href='./menu';
+
+        // Append the heading and button elements to the main div
+        emptyMessageDiv.appendChild(heading);
+        emptyMessageDiv.appendChild(viewmenu);
+
+        // Append the emptyMessageDiv to the document body or any other parent element
+
+  if(cart_data.length!=0){
+  cart_body.classList.remove('empty-cart');
+
   removeAllChildNodes(cart_body);
+  
   items=cart_data.items;
   items.forEach(item => {
       // Create the main div element with classes "menu-card" and "cart-item"
@@ -345,6 +369,12 @@ function update_cart(cart_data){
 
 cart_body.appendChild(menuCard);
   });
+}
+else{
+  cart_body.classList.add('empty-cart');
+  removeAllChildNodes(cart_body);
+  cart_body.appendChild(emptyMessageDiv);
+}
   mcart_body=document.querySelector('#cart-body');
   $('#cart-modal').modal('handleUpdate')
   toggleLoading(mcart_body);

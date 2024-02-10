@@ -5,6 +5,7 @@ ini_set('display_errors', '1');
 
 header('Access-Control-Allow-Origin: *');
 $domain=$global['domain'];
+if(isset($_SESSION['cart'])){
 $cart_items=json_decode($_SESSION['cart']);
 $sub_total=0;
 foreach($cart_items as $item_id=>$item){
@@ -22,8 +23,15 @@ foreach($cart_items as $item_id=>$item){
 
 }
 $sub_total_fin = $global['currency_symbol'].' '.formatPrice($sub_total);
-$cart=array("items"=>$full_cart_items, "sub_total"=>$sub_total_fin);
-
+if(isset($full_cart_items)){
+$cart=array("items"=>$full_cart_items, "sub_total"=>$sub_total_fin);}
+if(!isset($full_cart_items)){
+    $cart=array();
+}
+}
+else{
+$cart=array();}
 echo json_encode($cart);
+
 
 ?>

@@ -2291,8 +2291,14 @@ textarea.input-field {
 }
 
 #cart-container{
+  min-height: 20rem;
   max-height: 40rem;
   overflow-y:scroll;
+}
+#cart-container.empty-cart{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 #cart-body>.cart-container>.cart-item{
   margin-top: 1.2rem;
