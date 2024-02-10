@@ -220,6 +220,10 @@ $('#cart-modal').on('show.bs.modal', function (e) {
   };
   xhr.open('GET','./get_cart.php', true);
   xhr.send();
+  if(!isCartOpen())
+    {
+      animcart();
+    }
 });
 
 function update_cart(cart_data){
@@ -347,12 +351,6 @@ $('#cart-modal').on('hide.bs.modal', function (e) {
     }
 })
 
-$('#cart-modal').on('show.bs.modal', function (e) {
-  if(!isCartOpen())
-    {
-      animcart();
-    }
-})
 
 function animate_add_to_cart(ele){
   if(!isCartOpen())
