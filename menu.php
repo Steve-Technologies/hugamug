@@ -11,7 +11,6 @@ $result = $conn->query($sql);
 
       <section class="section menu" aria-label="menu-label" id="menu">
         <div class="container">
-        <br><br><br>
 
           <h2 class="headline-1 section-title text-center">Delicious Menu</h2>
 
@@ -35,21 +34,22 @@ $result = $conn->query($sql);
                     <h3 class="title-3">
                       <a href="#" class="card-title"><?php echo $row['name'] ?></a>
                     </h3>
-                    <?php 
-                    if($row['labels']!=''){ ?>
-                    <span class="badge label-1"><?php echo $row['labels'] ?></span>
-                    <?php  } ?>
 
                     <span class="span title-2"><?php echo $global['currency_symbol'] ?> <?php echo $row['price'] ?></span>
                   </div>
                   <div class="qty-wrap">
                   <!-- <button class="qtybtn ">-</button>
                     <span class="title-3">0</span> -->
-                    <button class="qtybtn " value=<?php echo $row['id']?> data-operation='add'  data-place='catalogue' onclick="mod_cart_cat(this)">Add to Cart</button>
+                    <button class="qtybtn" value=<?php echo $row['id']?> data-operation='add'  data-place='catalogue' onclick="mod_cart_cat(this)">Add to Cart</button>
+                    <button class="qtybtn" value=<?php echo $row['id']?>  onclick="display_details(this)">View More</button>
                   </div>
                   <p class="card-text label-1">
                   <?php echo $row['short_desc'] ?>
                   </p>
+                  <?php 
+                    if($row['labels']!=''){ ?>
+                    <span class="badge label-1"><?php echo $row['labels'] ?></span>
+                    <?php  } ?>
                 </div>
 
               </div>

@@ -9,7 +9,16 @@ const preloader = document.querySelector("[data-preaload]");
 window.addEventListener("load", function () {
   preloader.classList.add("loaded");
   document.body.classList.add("loaded");
+  if(window.scrollY>20){
+    header.classList.add("active");
+    backTopBtn.classList.add("active");
+  }
+  else if(window.scrollY<=20){
+    header.classList.remove("active");
+    backTopBtn.classList.remove("active");
+  }
 });
+
 
 
 /**
@@ -63,7 +72,8 @@ const hideHeader = function () {
 }
 
 window.addEventListener("scroll", function () {
-  if (window.scrollY >= 50) {
+  
+  if (window.scrollY >= 20) {
     header.classList.add("active");
     backTopBtn.classList.add("active");
     hideHeader();
@@ -78,7 +88,7 @@ const goldcrayola = '#e4c590';
 /**
  * HERO SLIDER
  */
-
+get_cart();
 const heroSlider = document.querySelector("[data-hero-slider]");
 const heroSliderItems = document.querySelectorAll("[data-hero-slider-item]");
 const heroSliderPrevBtn = document.querySelector("[data-prev-btn]");
@@ -202,6 +212,10 @@ crtbtn.addEventListener('click', open_cart);
 function open_cart()
 {
   $('#cart-modal').modal('show');
+  if(!isCartOpen())
+    {
+      animcart();
+    }
 }
 $('#cart-modal').on('show.bs.modal', get_cart);
 
@@ -222,10 +236,6 @@ function get_cart(){
   };
   xhr.open('GET','./get_cart.php', true);
   xhr.send();
-  if(!isCartOpen())
-    {
-      animcart();
-    }
 }
 
 function update_cart(cart_data){
@@ -249,7 +259,7 @@ function update_cart(cart_data){
         emptyMessageDiv.appendChild(viewmenu);
 
         // Append the emptyMessageDiv to the document body or any other parent element
-
+        total_item_count=0;
   if(cart_data.items.length!=0){
   cart_body.classList.remove('empty-cart');
 
@@ -257,6 +267,7 @@ function update_cart(cart_data){
   
   items=cart_data.items;
   items.forEach(item => {
+    total_item_count+=item.qty;
       // Create the main div element with classes "menu-card" and "cart-item"
       var menuCard = document.createElement("div");
       menuCard.classList.add("menu-card", "cart-item");
@@ -305,10 +316,7 @@ function update_cart(cart_data){
       // Append the a element to the h3 element
       title.appendChild(link);
 
-      // Create the span element with class "badge label-1"
-      var badge = document.createElement("span");
-      badge.classList.add("badge", "label-1");
-      badge.textContent = item.label;
+      
 
       // Create the span element with class "span title-2"
       var price = document.createElement("span");
@@ -317,7 +325,6 @@ function update_cart(cart_data){
 
       // Append the badge and price elements to the title wrapper
       titleWrapper.appendChild(title);
-      titleWrapper.appendChild(badge);
       titleWrapper.appendChild(price);
 
       // Create the div element with class "qty-wrap"
@@ -358,10 +365,20 @@ function update_cart(cart_data){
       cardText.style.textAlign = "left";
       cardText.textContent = item.short_desc;
 
+
+      // Create the span element with class "badge label-1"
+      var badge = document.createElement("span");
+      badge.classList.add("badge", "label-1");
+      badge.textContent = item.label;
+      badge.style.marginTop='0.5rem';
+
+
+
       // Append the title wrapper, qty wrap, and card text elements to the content div
       contentDiv.appendChild(titleWrapper);
       contentDiv.appendChild(qtyWrap);
       contentDiv.appendChild(cardText);
+      contentDiv.appendChild(badge);
 
       // Append the figure and content div elements to the main div (menu card)
       menuCard.appendChild(figure);
@@ -379,6 +396,8 @@ else{
   sub_total=document.querySelector('#subtotal');
   sub_total.innerText=cart_data.sub_total;
 }
+  cart_count=document.querySelector('#cart-count');
+  cart_count.innerText=total_item_count;
   mcart_body=document.querySelector('#cart-body');
   $('#cart-modal').modal('handleUpdate')
   toggleLoading(mcart_body);
