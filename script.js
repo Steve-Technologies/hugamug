@@ -203,6 +203,137 @@ function open_cart()
 {
   $('#cart-modal').modal('show');
 }
+
+$('#cart-modal').on('show.bs.modal', function (e) {
+  // Use AJAX to get image options from the server (PHP endpoint)
+  const xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function () {
+      if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+              const cart = JSON.parse(xhr.responseText);
+              console.log(cart);
+              update_cart(cart);
+          } else {
+              console.error('Error fetching image options:', xhr.statusText);
+          }
+      }
+  };
+  xhr.open('GET','./get_cart.php', true);
+  xhr.send();
+});
+
+function update_cart(cart_data){
+  cart_body=document.querySelector('#cart-container');
+  items=cart_data.items;
+  items.forEach(item => {
+      // Create the main div element with classes "menu-card" and "cart-item"
+      var menuCard = document.createElement("div");
+      menuCard.classList.add("menu-card", "cart-item");
+
+      // Create the figure element with class "card-banner" and "img-holder"
+      var figure = document.createElement("figure");
+      figure.classList.add("card-banner", "img-holder");
+
+      // Set width and height styles for the figure element
+      figure.style.width = "100px";
+      figure.style.height = "100px";
+
+      // Create the img element
+      var img = document.createElement("img");
+      img.src = item.img_url;
+      img.width = 100;
+      img.height = 100;
+      img.loading = "lazy";
+      img.alt = item.name;
+      img.classList.add("img-cover");
+      img.style.width = "100px";
+      img.style.height = "100px";
+      img.style.zIndex = "1";
+
+      // Append the img element to the figure element
+      figure.appendChild(img);
+
+      // Create the div element for the content
+      var contentDiv = document.createElement("div");
+      contentDiv.style.width= '80%';
+
+      // Create the div element with class "title-wrapper"
+      var titleWrapper = document.createElement("div");
+      titleWrapper.classList.add("title-wrapper");
+
+      // Create the h3 element with class "title-3"
+      var title = document.createElement("h3");
+      title.classList.add("title-3");
+
+      // Create the a element with class "card-title"
+      var link = document.createElement("a");
+      link.href = "#";
+      link.classList.add("card-title");
+      link.textContent = item.name;
+
+      // Append the a element to the h3 element
+      title.appendChild(link);
+
+      // Create the span element with class "badge label-1"
+      var badge = document.createElement("span");
+      badge.classList.add("badge", "label-1");
+      badge.textContent = item.label;
+
+      // Create the span element with class "span title-2"
+      var price = document.createElement("span");
+      price.classList.add("span", "title-2");
+      price.textContent = item.individual_total;
+
+      // Append the badge and price elements to the title wrapper
+      titleWrapper.appendChild(title);
+      titleWrapper.appendChild(badge);
+      titleWrapper.appendChild(price);
+
+      // Create the div element with class "qty-wrap"
+      var qtyWrap = document.createElement("div");
+      qtyWrap.classList.add("qty-wrap");
+
+      // Create the button elements for quantity control
+      var minusBtn = document.createElement("button");
+      minusBtn.classList.add("qtybtn");
+      minusBtn.textContent = "-";
+      qtyWrap.appendChild(minusBtn);
+
+      var qtySpan = document.createElement("span");
+      qtySpan.classList.add("title-3");
+      qtySpan.textContent = item.qty;
+      qtyWrap.appendChild(qtySpan);
+
+      var plusBtn = document.createElement("button");
+      plusBtn.classList.add("qtybtn");
+      plusBtn.textContent = "+";
+      plusBtn.value = "1";
+      plusBtn.onclick = function() {
+          addtocart(this);
+      };
+      qtyWrap.appendChild(plusBtn);
+
+      // Create the p element with class "card-text label-1"
+      var cardText = document.createElement("p");
+      cardText.classList.add("card-text", "label-1");
+      cardText.style.textAlign = "left";
+      cardText.textContent = item.short_desc;
+
+      // Append the title wrapper, qty wrap, and card text elements to the content div
+      contentDiv.appendChild(titleWrapper);
+      contentDiv.appendChild(qtyWrap);
+      contentDiv.appendChild(cardText);
+
+      // Append the figure and content div elements to the main div (menu card)
+      menuCard.appendChild(figure);
+      menuCard.appendChild(contentDiv);
+
+cart_body.appendChild(menuCard);
+    console.log(item);
+  });
+}
+
+
 function close_cart()
 {
   $('#cart-modal').modal('hide');

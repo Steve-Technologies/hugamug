@@ -1527,7 +1527,7 @@ textarea.input-field {
    */
 
   .topbar {
-    display: block;
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
@@ -1570,7 +1570,7 @@ textarea.input-field {
    * HEADER
    */
 
-  .header { top: 51px; }
+  /* .header { top: 51px; } */
 
   .header.active { top: 0; }
 
@@ -1825,11 +1825,12 @@ textarea.input-field {
   /**
    * TOPBAR
    */
+.header{top:51px;}
 
+.topbar{display: block;}
   .topbar-item:not(.link) { display: flex; }
 
   .topbar .item-2 { margin-inline-end: auto; }
-
 
 
   /**
@@ -2265,7 +2266,7 @@ textarea.input-field {
   border-radius: 20px;
 }
 .cart-item>div>.qty-wrap{
-  justify-content: center!important;
+
 }
 @media screen and (max-width: 550px){
   .cart-item>div>p{
@@ -2277,5 +2278,18 @@ textarea.input-field {
   }
 .badge{
     display: none;
+  }
+}
+#cart-container{
+  max-height: 40rem;
+  overflow-y:scroll;
+}
+#cart-body>.cart-container>.cart-item{
+  margin-top: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+@media screen and (max-width: 1200px) { 
+  .navbar{
+    display: block;
   }
 }

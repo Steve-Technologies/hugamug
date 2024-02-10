@@ -29,7 +29,7 @@ $result = $conn->query($sql);
                     class="img-cover" style="position: absolute;width:100px;height:100px;z-index:1;">
                 </figure>
 
-                <div>
+                <div style="width: 80%;">
 
                   <div class="title-wrapper">
                     <h3 class="title-3">
@@ -47,11 +47,9 @@ $result = $conn->query($sql);
                     <span class="title-3">0</span> -->
                     <button class="qtybtn " value=<?php echo $row['id']?> onclick="addtocart(this)">Add to Cart</button>
                   </div>
-
                   <p class="card-text label-1">
                   <?php echo $row['short_desc'] ?>
                   </p>
-
                 </div>
 
               </div>

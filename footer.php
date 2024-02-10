@@ -148,33 +148,14 @@
         <span aria-hidden="true" style="color:white;scale:1.5;">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" id="cart-body">
+      <div class="cart-container" id="cart-container">
+
+      </div>
       
-      <div class="menu-card cart-item">
-        <figure class="card-banner img-holder" style="width: 100px; height: 100px;">
-         <img src="uploads/images/65bffd8c0eb99_compressed_chicken_biriyani.jpeg" width="100" height="100" loading="lazy" alt="Greek Salad" class="img-cover" style="position: absolute;width:100px;height:100px;z-index:1;">
-        </figure>
+        <!-- item ends -->
 
-<div>
-  <div class="title-wrapper">
-    <h3 class="title-3">
-      <a href="#" class="card-title">Greek Salad</a>
-    </h3>
-     <span class="badge label-1">Seasonal</span>
-     <span class="span title-2">TZS 25.50</span>
-  </div>
-  <div class="qty-wrap">
-    <button class="qtybtn ">-</button>
-      <span class="title-3">0</span>
-    <button class="qtybtn " value="1" onclick="addtocart(this)">+</button>
-  </div>
 
-  <p class="card-text label-1">
-  Tomatoes, green bell pepper, sliced cucumber onion, olives, and feta cheese.                  </p>
-
-</div>
-
-</div>
       </div>
       <div class="modal-footer d-flex justify-content-center">
         <button type="button" class="btn">Checkout</button>
