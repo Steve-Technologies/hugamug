@@ -1,6 +1,7 @@
 <?php
 require 'functions.php';
 include_once('header.php');
+
 ?>
 
   <!-- 
@@ -10,7 +11,7 @@ include_once('header.php');
   <link rel="preload" as="image" href="./assets/images/hero-slider-1.jpg">
   <link rel="preload" as="image" href="./assets/images/hero-slider-2.jpg">
   <link rel="preload" as="image" href="./assets/images/hero-slider-3.jpg">
-</head>
+  </head>
 
 <body id="top">
  
@@ -120,7 +121,7 @@ include_once('header.php');
                     <a href="#">Breakfast</a>
                   </h3>
 
-                  <a href="#" class="btn-text hover-underline label-2">View Menu</a>
+                  <a href="./menu" class="btn-text hover-underline label-2">View Menu</a>
 
                 </div>
 
@@ -143,7 +144,7 @@ include_once('header.php');
                     <a href="#">Appetizers</a>
                   </h3>
 
-                  <a href="#" class="btn-text hover-underline label-2">View Menu</a>
+                  <a href="./menu" class="btn-text hover-underline label-2">View Menu</a>
 
                 </div>
 
@@ -166,7 +167,7 @@ include_once('header.php');
                     <a href="#">Drinks</a>
                   </h3>
 
-                  <a href="#" class="btn-text hover-underline label-2">View Menu</a>
+                  <a href="./menu" class="btn-text hover-underline label-2">View Menu</a>
 
                 </div>
 
@@ -198,7 +199,7 @@ include_once('header.php');
 
             <p class="label-2 section-subtitle" id="about-label">Our Story</p>
 
-            <h2 class="headline-1 section-title">Every Fla vor Tells a Story</h2>
+            <h2 class="headline-1 section-title">Every Flavor Tells a Story</h2>
 
             <p class="section-text">
               Lorem Ipsum is simply dummy text of the printingand typesetting industry lorem Ipsum has been the
@@ -208,7 +209,7 @@ include_once('header.php');
 
             <div class="contact-label">Book Through Call</div>
 
-            <a href="tel:+804001234567" class="body-1 contact-number hover-underline">+80 (400) 123 4567</a>
+            <a href="tel:<?php echo $global['contact_no'] ?>" class="body-1 contact-number hover-underline"><?php echo $global['contact_no'] ?></a>
 
             <a href="#" class="btn btn-hmprimary">
               <span class="text text-1">Read More</span>
@@ -269,12 +270,12 @@ include_once('header.php');
             </p>
 
             <div class="wrapper">
-              <del class="del body-3">$40.00</del>
+              <del class="del body-3">TZS 40.00</del>
 
-              <span class="span body-1">$20.00</span>
+              <span class="span body-1">TZS 20.00</span>
             </div>
 
-            <a href="#" class="btn btn-hmprimary">
+            <a href="./menu" class="btn btn-hmprimary">
               <span class="text text-1">View All Menu</span>
 
               <span class="text text-2" aria-hidden="true">View All Menu</span>
@@ -306,179 +307,58 @@ include_once('header.php');
 
           <ul class="grid-list">
 
+          <?php  
+          $sql = "SELECT * FROM products";
+          $result = $conn->query($sql);
+          foreach ($result as $row) {
+            $row['price']=formatPrice($row['price'])
+    ?>
+  
             <li>
               <div class="menu-card hover:card">
 
-                <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
-                  <img src="./assets/images/menu-1.png" width="100" height="100" loading="lazy" alt="Greek Salad"
-                    class="img-cover">
+                <figure class="card-banner img-holder" style="width: 100px; height: 100px;">
+                  <img src="<?php echo get_image_from_id($row['img_id'],'thumbnail')?>" width="100" height="100" loading="lazy" alt="<?php echo $row['name'] ?>"
+                    class="img-cover" style="position: absolute;width:100px;height:100px;z-index:1;">
                 </figure>
 
-                <div>
+                <div style="width: 100%;">
 
                   <div class="title-wrapper">
                     <h3 class="title-3">
-                      <a href="#" class="card-title">Greek Salad</a>
+                      <a href="#" class="card-title"><?php echo $row['name'] ?></a>
                     </h3>
 
-                    <span class="badge label-1">Seasonal</span>
-
-                    <span class="span title-2">$25.50</span>
+                    <span class="span title-2"><?php echo $global['currency_symbol'] ?> <?php echo $row['price'] ?></span>
                   </div>
-
+                  <div class="qty-wrap">
+                  <!-- <button class="qtybtn ">-</button>
+                    <span class="title-3">0</span> -->
+                    <button class="qtybtn" value=<?php echo $row['id']?> data-operation='add'  data-place='catalogue' onclick="mod_cart_cat(this)">Add to Cart</button>
+                    <button class="qtybtn" value=<?php echo $row['id']?>  onclick="display_details(this)">View More</button>
+                  </div>
                   <p class="card-text label-1">
-                    Tomatoes, green bell pepper, sliced cucumber onion, olives, and feta cheese.
+                  <?php echo $row['short_desc'] ?>
                   </p>
-
+                  <?php 
+                    if($row['labels']!=''){ ?>
+                    <span class="badge label-1"><?php echo $row['labels'] ?></span>
+                    <?php  } ?>
                 </div>
 
               </div>
             </li>
 
-            <li>
-              <div class="menu-card hover:card">
-
-                <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
-                  <img src="./assets/images/menu-2.png" width="100" height="100" loading="lazy" alt="Lasagne"
-                    class="img-cover">
-                </figure>
-
-                <div>
-
-                  <div class="title-wrapper">
-                    <h3 class="title-3">
-                      <a href="#" class="card-title">Lasagne</a>
-                    </h3>
-
-                    <span class="span title-2">$40.00</span>
-                  </div>
-
-                  <p class="card-text label-1">
-                    Vegetables, cheeses, ground meats, tomato sauce, seasonings and spices
-                  </p>
-
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="menu-card hover:card">
-
-                <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
-                  <img src="./assets/images/menu-3.png" width="100" height="100" loading="lazy" alt="Butternut Pumpkin"
-                    class="img-cover">
-                </figure>
-
-                <div>
-
-                  <div class="title-wrapper">
-                    <h3 class="title-3">
-                      <a href="#" class="card-title">Butternut Pumpkin</a>
-                    </h3>
-
-                    <span class="span title-2">$10.00</span>
-                  </div>
-
-                  <p class="card-text label-1">
-                    Typesetting industry lorem Lorem Ipsum is simply dummy text of the priand.
-                  </p>
-
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="menu-card hover:card">
-
-                <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
-                  <img src="./assets/images/menu-4.png" width="100" height="100" loading="lazy" alt="Tokusen Wagyu"
-                    class="img-cover">
-                </figure>
-
-                <div>
-
-                  <div class="title-wrapper">
-                    <h3 class="title-3">
-                      <a href="#" class="card-title">Tokusen Wagyu</a>
-                    </h3>
-
-                    <span class="badge label-1">New</span>
-
-                    <span class="span title-2">$39.00</span>
-                  </div>
-
-                  <p class="card-text label-1">
-                    Vegetables, cheeses, ground meats, tomato sauce, seasonings and spices.
-                  </p>
-
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="menu-card hover:card">
-
-                <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
-                  <img src="./assets/images/menu-5.png" width="100" height="100" loading="lazy" alt="Olivas Rellenas"
-                    class="img-cover">
-                </figure>
-
-                <div>
-
-                  <div class="title-wrapper">
-                    <h3 class="title-3">
-                      <a href="#" class="card-title">Olivas Rellenas</a>
-                    </h3>
-
-                    <span class="span title-2">$25.00</span>
-                  </div>
-
-                  <p class="card-text label-1">
-                    Avocados with crab meat, red onion, crab salad stuffed red bell pepper and green bell pepper.
-                  </p>
-
-                </div>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="menu-card hover:card">
-
-                <figure class="card-banner img-holder" style="--width: 100; --height: 100;">
-                  <img src="./assets/images/menu-6.png" width="100" height="100" loading="lazy" alt="Opu Fish"
-                    class="img-cover">
-                </figure>
-
-                <div>
-
-                  <div class="title-wrapper">
-                    <h3 class="title-3">
-                      <a href="#" class="card-title">Opu Fish</a>
-                    </h3>
-
-                    <span class="span title-2">$49.00</span>
-                  </div>
-
-                  <p class="card-text label-1">
-                    Vegetables, cheeses, ground meats, tomato sauce, seasonings and spices
-                  </p>
-
-                </div>
-
-              </div>
-            </li>
-
+            <?php
+          }
+?>
           </ul>
 
           <p class="menu-text text-center">
             During winter daily from <span class="span">7:00 pm</span> to <span class="span">9:00 pm</span>
           </p>
 
-          <a href="#" class="btn btn-hmprimary">
+          <a href="./menu" class="btn btn-hmprimary">
             <span class="text text-1">View All Menu</span>
 
             <span class="text text-2" aria-hidden="true">View All Menu</span>

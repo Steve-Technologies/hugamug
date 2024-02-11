@@ -399,7 +399,7 @@ else{
   cart_count=document.querySelector('#cart-count');
   cart_count.innerText=total_item_count;
   mcart_body=document.querySelector('#cart-body');
-  $('#cart-modal').modal('handleUpdate')
+  $('#cart-modal').modal('handleUpdate');
   toggleLoading(mcart_body);
 }
 
