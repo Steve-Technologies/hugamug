@@ -155,9 +155,18 @@ function resize_and_save_image($file, $w, $h = 0, $crop = FALSE, $outputPath) {
 
 
 
-function get_image_from_id($id,$image_type)
+/**
+ * get_image_from_id
+ *
+ * @param  number $id
+ * @param  string $image_type accepts values 'thumbnail' or 'large'
+ * @param  string $url_type accepts values 'relative' or 'absolute'
+ * @return string path to the image
+ */
+function get_image_from_id($id,$image_type,$url_type='relative')
 {
     global $conn;
+    global $global;
  if($image_type=='thumbnail'||$image_type=='large'){
   if($image_type=='thumbnail')
    $sql='SELECT thumb_url FROM images WHERE id = ?';
@@ -170,7 +179,12 @@ function get_image_from_id($id,$image_type)
   $stmt->bind_result($imageLocation);
   $stmt->fetch();
   $stmt->close();
-  return $imageLocation;
+  if($url_type=='relative'){
+  return $imageLocation;}
+  else if($url_type=='absolute')
+  {
+    return $global['domain'].'/'.$imageLocation;
+  }
  }
  else
  echo '<br>Invalid image_type, possible values for image_type are thumbnail and large <br>';
@@ -214,8 +228,10 @@ function authenticate($credentials)
             session_regenerate_id();
             $_SESSION["user_id"]= $auth_user_data['id'];
             $USER = $auth_user_data;
-            if(in_array('can_access_dashboard',get_capabilities($USER)))
-            header("Location: dashboard.php");
+            if(in_array('can_access_dashboard',get_capabilities($USER))||in_array('superadmin',get_capabilities($USER)))
+            {header("Location: http://localhost/hugamug/admin/dashboard.php");}
+            else
+            {header("Location: http://localhost/hugamug");}
             exit;
             
         }
