@@ -4,6 +4,7 @@ ini_set('display_errors', 1);
 include_once('connect.php');
 $sql = "SELECT * FROM global_variables";
 $result = $conn->query($sql);
+global $current_user_id;
 $global = array();
 foreach ($result as $row) {
     $global[$row['name']] = $row['value'];
@@ -17,10 +18,17 @@ if(!isset($_SESSION)) {
 }
 if(isset( $_SESSION['user_id']))
 {
-    $prosql = "SELECT * FROM user WHERE user_id = $current_user_id";
+    $current_user_id = $_SESSION['user_id'];
+    $USER = get_user($current_user_id);
+
+}
+
+function get_user($user_id)
+{
+    global $conn;
+    $prosql = "SELECT * FROM users WHERE id = $user_id";
     $result = $conn->query($prosql);
-    $USER = $result->fetch_assoc();
-    $_SESSION['role']=$USER['role'];
+    return $result->fetch_assoc();    
 }
 
 function formatPrice($priceString) {
@@ -185,6 +193,8 @@ function sanitize_asset_url($url)
 function authenticate($credentials)
 {
     GLOBAL $conn;
+    global $current_user_id; 
+    global $USER;
     $invalidcred =true;
     $identifier = $credentials['identifier'];
     $password = $credentials['password'];
@@ -195,15 +205,17 @@ function authenticate($credentials)
         die("Error: " . $stmt->error);
       }
     $result = $stmt->get_result();
-      $user = $result->fetch_assoc();
-      if($user)
+      $auth_user_data = $result->fetch_assoc();
+      if($auth_user_data)
       {
-        if(password_verify($password,$user['password']))
+        if(password_verify($password,$auth_user_data['password']))
         {
             session_start();
             session_regenerate_id();
-            $_SESSION["user_id"]= $user['id'];
-            header("Location: admin_panel.php");
+            $_SESSION["user_id"]= $auth_user_data['id'];
+            $USER = $auth_user_data;
+            if(in_array('can_access_dashboard',get_capabilities($USER)))
+            header("Location: dashboard.php");
             exit;
             
         }
@@ -213,5 +225,30 @@ function authenticate($credentials)
         }
       }
       return $invalidcred;
+}
+
+function get_capabilities($user)
+{
+    global $conn;
+    $role=$user['role'];
+    $sql="SELECT capabilities from roles where role='$role'";
+    $conn->query($sql);
+    $result = $conn->query($sql);
+
+// Check if there's a result
+    if ($result->num_rows > 0) {
+        // Fetch the result row
+        $row = $result->fetch_assoc();
+        
+        // Decode the JSON string into a PHP array
+        $capabilitiesArray = json_decode($row["capabilities"], true);
+
+        // Output the capabilities array
+        return $capabilitiesArray;
+    }
+    else{
+        return [];
+    }
+
 }
 ?>
