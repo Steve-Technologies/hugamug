@@ -9,7 +9,7 @@ require '../functions.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $global['site_name'] . ' - Dashboard' ?></title>
     <link rel="stylesheet" href="dash_style.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Rounded" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,500,1,0" />
 </head>
 
 <body>
@@ -27,7 +27,7 @@ require '../functions.php';
                 </div>
             </div>
             <div class="sidebar">
-                <a href="#">
+                <a href="#" class="active">
                     <span class="material-symbols-rounded">
                         dashboard
                     </span>
@@ -66,6 +66,7 @@ require '../functions.php';
 
             </div>
         </aside>
+        <!-- ---- End of Aside (Sidebar) ---- -->
     </div>
 </body>
 

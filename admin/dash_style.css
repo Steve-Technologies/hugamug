@@ -97,6 +97,7 @@ b{
     color: var(--color-dark);
 }
 
+
 .primary{
     color: var(--color-primary);
 }
@@ -123,6 +124,8 @@ b{
     border-radius: 50%;
     overflow: hidden;
 }
+
+/* =========== Sidebar =========== */
 
 aside{
     height: 100vh;
@@ -155,4 +158,46 @@ aside .sidebar{
     height: 86vh;
     position: relative;
     top: 3rem;
+}
+
+aside h3{
+    font-weight: 500;
+} 
+
+aside .sidebar a{
+    display: flex;
+    color: var(--color-info-dark);
+    margin-left: 2rem;
+    gap: 1rem;
+    align-items: center;
+    position: relative;
+    height: 3.7rem;
+    border-radius: var(--border-radius-1);
+    transition: all 300ms ease;
+}
+
+aside .sidebar a span{
+    font-size: 1.6rem;
+    transition: all 300ms ease;
+}
+
+aside .sidebar a.active{
+    background-color: var(--color-light);
+    color: var(--color-primary);
+    margin-left: 0;
+}
+
+aside .sidebar a.active:before{
+    content: '';
+    width: 6px;
+    height: 100%;
+    background-color: var(--color-primary);
+}
+
+aside .sidebar a:hover{
+    color: var(--color-primary);
+}
+
+aside .sidebar a:hover span{
+    margin-left: 1rem;
 }
