@@ -67,6 +67,78 @@ require '../functions.php';
             </div>
         </aside>
         <!-- ---- End of Aside (Sidebar) ---- -->
+        <main>
+            <h1>Dashboard</h1>
+            <div class="date">
+                <input type="date">
+            </div>
+            <div class="insights">
+                <div class="sales">
+                    <span class="material-symbols-rounded">
+                        mintmark
+                    </span>
+                    <div class="middle">
+                        <div class="left">
+                            <h3>Total Sales</h3>
+                            <h1>TZS 150,000</h1>
+                        </div>
+                        <div class="progress">
+                            <svg>
+                                <circle cx='38' cy='38' r='36'></circle>
+                            </svg>
+                            <div class="number">
+                                <p>81%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <small class="text-muted">Last 24 Hours</small>
+                </div>
+                <!-- ----- End of Sales ----- -->
+                <div class="orders">
+                <span class="material-symbols-rounded">
+                        assignment
+                    </span>
+                    <div class="middle">
+                        <div class="left">
+                            <h3>Orders</h3>
+                            <h1>50</h1>
+                        </div>
+                        <div class="progress">
+                            <svg>
+                                <circle cx='38' cy='38' r='36'></circle>
+                            </svg>
+                            <div class="number">
+                                <p>91%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <small class="text-muted">Last 24 Hours</small>
+                </div>
+                <!-- ----- End of Orders ----- -->
+                <div class="profit">
+                <span class="material-symbols-rounded">
+savings
+</span>
+                    <div class="middle">
+                        <div class="left">
+                            <h3>Profit</h3>
+                            <h1>TZS 55,000</h1>
+                        </div>
+                        <div class="progress">
+                            <svg>
+                                <circle cx='38' cy='38' r='36'></circle>
+                            </svg>
+                            <div class="number">
+                                <p>89%</p>
+                            </div>
+                        </div>
+                    </div>
+                    <small class="text-muted">Last 24 Hours</small>
+                </div>
+                <!-- ----- End of Profit ----- -->
+                
+            </div>
+        </main>
     </div>
 </body>
 
