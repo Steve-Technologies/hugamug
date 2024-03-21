@@ -126,6 +126,13 @@ b{
     overflow: hidden;
 }
 
+.primary-btn{
+    padding: 0.5rem;
+    border-radius: var(--border-radius-1);
+    background-color: var(--color-primary);
+    color: var(--color-white);
+}
+
 /* =========== Sidebar =========== */
 
 aside{
@@ -304,4 +311,9 @@ main .insights .progress .number{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+main .insights small{
+    margin-top: 1.3rem;
+    display: block;
 }

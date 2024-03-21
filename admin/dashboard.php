@@ -95,7 +95,7 @@ require '../functions.php';
                 </div>
                 <!-- ----- End of Sales ----- -->
                 <div class="orders">
-                <span class="material-symbols-rounded">
+                    <span class="material-symbols-rounded">
                         assignment
                     </span>
                     <div class="middle">
@@ -116,9 +116,9 @@ require '../functions.php';
                 </div>
                 <!-- ----- End of Orders ----- -->
                 <div class="profit">
-                <span class="material-symbols-rounded">
-savings
-</span>
+                    <span class="material-symbols-rounded">
+                        savings
+                    </span>
                     <div class="middle">
                         <div class="left">
                             <h3>Profit</h3>
@@ -136,7 +136,35 @@ savings
                     <small class="text-muted">Last 24 Hours</small>
                 </div>
                 <!-- ----- End of Profit ----- -->
-                
+            </div>
+            <!-- ----- End of Insights ----- -->
+            <div class="recent-order">
+                <h2>Recent Orders</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer Name</th>
+                            <th>Table No:</th>
+                            <th>Status</th>
+                            <th>Amount</th>
+                            <th>Type</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1000</td>
+                            <td>Binoy</td>
+                            <td>2</td>
+                            <td class="warning">Preparing</td>
+                            <td>TZS 2000</td>
+                            <td>Dine in</td>
+                            <td>View  Edit</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <a class="primary-btn" href="#">Show All</a>
             </div>
         </main>
     </div>
