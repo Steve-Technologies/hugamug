@@ -138,7 +138,7 @@ require '../functions.php';
                 <!-- ----- End of Profit ----- -->
             </div>
             <!-- ----- End of Insights ----- -->
-            <div class="recent-order">
+            <div style="margin-top: 2rem;" class="table-container">
                 <h2>Recent Orders</h2>
                 <table>
                     <thead>
@@ -149,6 +149,7 @@ require '../functions.php';
                             <th>Status</th>
                             <th>Amount</th>
                             <th>Type</th>
+                            <th tooltip="Waiter/Online">Source</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -157,16 +158,82 @@ require '../functions.php';
                             <td>1000</td>
                             <td>Binoy</td>
                             <td>2</td>
-                            <td class="warning">Preparing</td>
+                            <td class="status-rejected"><span>Rejected</span></td>
                             <td>TZS 2000</td>
                             <td>Dine in</td>
-                            <td>View  Edit</td>
+                            <td><a href="#">Nobel</a></td>
+                            <td class="btn-col">
+                                <button tooltip="View" class="primary-btn tooltip"><span class="material-symbols-rounded">
+                                        visibility
+                                    </span></button>
+                                <a href="#" tooltip="Edit" class="primary-btn"><span class="material-symbols-rounded">
+                                        edit
+                                    </span></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>1000</td>
+                            <td>Binoy</td>
+                            <td>2</td>
+                            <td class="status-cancelled"><span>Cancelled</span></td>
+                            <td>TZS 2000</td>
+                            <td>Dine in</td>
+                            <td>Online</td>
+                            <td class="btn-col">
+                                <button tooltip="View" class="primary-btn tooltip"><span class="material-symbols-rounded">
+                                        visibility
+                                    </span></button>
+                                <a href="#" tooltip="Edit" class="primary-btn"><span class="material-symbols-rounded">
+                                        edit
+                                    </span></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>1000</td>
+                            <td>Binoy</td>
+                            <td>2</td>
+                            <td class="status-processing"><span>Preparing</span></td>
+                            <td>TZS 2000</td>
+                            <td>Dine in</td>
+                            <td><a href="#">Philip</a></td>
+                            <td class="btn-col">
+                                <button tooltip="View" class="primary-btn tooltip"><span class="material-symbols-rounded">
+                                        visibility
+                                    </span></button>
+                                <a href="#" tooltip="Edit" class="primary-btn"><span class="material-symbols-rounded">
+                                        edit
+                                    </span></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>1000</td>
+                            <td>Binoy</td>
+                            <td>2</td>
+                            <td class="status-completed"><span>Completed</span></td>
+                            <td>TZS 2000</td>
+                            <td>Dine in</td>
+                            <td><a href="#">Micheal</a></td>
+                            <td class="btn-col">
+                                <button tooltip="View" class="primary-btn tooltip"><span class="material-symbols-rounded">
+                                        visibility
+                                    </span></button>
+                                <a href="#" tooltip="Edit" class="primary-btn"><span class="material-symbols-rounded">
+                                        edit
+                                    </span></a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
+                <div class="tbl-ext-btn-container">
                 <a class="primary-btn" href="#">Show All</a>
+                </div>
+                
             </div>
         </main>
+        <!-- ------------- End of Main ------------- -->
+        <div class="right">
+
+        </div>
     </div>
 </body>
 

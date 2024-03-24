@@ -2,8 +2,8 @@
 
 :root {
     --color-primary: #e4c590;
-    --color-danger: #ff7782;
-    --color-success: #41f1b6;
+    --color-danger: #da0a1c;
+    --color-success: #04a447;
     --color-warning: #ffbb55;
     --color-white: #fff;
     --color-info-dark: #7d8da1;
@@ -13,6 +13,8 @@
     --color-primary-variant: #111e88;
     --color-dark-variant: #677483;
     --color-background: #f6f6f9;
+    --color-cancelled: rgb(150, 150, 150);
+    --color-dining: rgb(7, 134, 176);
 
     --card-border-radius: 2rem;
     --border-radius-1: 0.4rem;
@@ -58,7 +60,7 @@ body{
 }
 
 a{
-    color: var(--color-dark);
+    color: var(--color-primary);
 }
 
 img{
@@ -98,7 +100,40 @@ b{
     color: var(--color-dark);
 }
 
-
+.status-processing > span{
+    background-color: var(--color-warning);
+    color: var(--color-white);
+    border-radius: var(--border-radius-1);
+    padding: 0.5rem;
+    width: fit-content;
+    margin: 1rem;
+}
+.status-rejected > span{
+    background-color: var(--color-danger);
+    color: var(--color-white);
+    border-radius: var(--border-radius-1);
+    padding: 0.5rem;
+    width: fit-content;
+    margin: 1rem;
+}
+.status-completed > span{
+    background-color: var(--color-success);
+    color: var(--color-white);
+    border-radius: var(--border-radius-1);
+    padding: 0.5rem;
+}
+.status-cancelled > span{
+    background-color: var(--color-cancelled);
+    color: var(--color-white);
+    border-radius: var(--border-radius-1);
+    padding: 0.5rem;
+}
+.status-dining > span{
+    background-color: var(--color-dining);
+    color: var(--color-white);
+    border-radius: var(--border-radius-1);
+    padding: 0.5rem;
+}
 .primary{
     color: var(--color-primary);
 }
@@ -127,12 +162,50 @@ b{
 }
 
 .primary-btn{
+    display: block;
+    width: fit-content;
+    text-align: center; 
     padding: 0.5rem;
     border-radius: var(--border-radius-1);
+    border: 1px solid var(--color-primary);
     background-color: var(--color-primary);
     color: var(--color-white);
+    transition: all 300ms ease;
+}
+.primary-btn:hover{
+    background-color: transparent;
+    color: var(--color-primary);
 }
 
+.btn-col{
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+}
+
+[tooltip] {
+    position: relative;
+  }
+
+  [tooltip]:after {
+    pointer-events: none;
+    content: attr(tooltip);
+    position: absolute;
+    left: 50%;
+    bottom: 100%; /* put it on the top */
+    background-color: var(--color-dark);
+    color: var(--color-white);
+    width: fit-content;
+    padding: 5px;
+    border-radius: var(--border-radius-1);
+    opacity: 0;
+  }
+  [tooltip]:hover:after {
+    opacity: 1;
+  }
+  [tooltip]:after {
+    left: 1.5rem!important;
+  }
 /* =========== Sidebar =========== */
 
 aside{
@@ -215,7 +288,7 @@ main{
     margin-top: 1.4rem;
 }
 
-main .date{
+.date{
     display: inline-block;
     background-color: var(--color-light);
     border-radius: var(--border-radius-1);
@@ -223,18 +296,18 @@ main .date{
     padding: 0.5rem 1.6rem;
 }
 
-main .date input[type='date']{
+ .date input[type='date']{
     background: transparent;
     color: var(--color-dark);
 }
 
-main .insights{
+ .insights{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.6rem;
 }
 
-main .insights > div{
+ .insights > div{
     background: var(--color-white);
     padding: var(--card-padding);
     border-radius: var(--card-border-radius);
@@ -243,41 +316,41 @@ main .insights > div{
     transition: all 300ms ease;
 }
 
-main .insights > div:hover{
+ .insights > div:hover{
     box-shadow: none;
 }
 
-main .insights > div span{
+ .insights > div span{
     background: var(--color-primary);
     padding: 0.5rem;
     border-radius: 50%;
     color: var(--color-white);
 }
 
-main .insights > div .middle{
+ .insights > div .middle{
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-main .insights h3{
+ .insights h3{
     margin: 1rem 0 0.6rem;
     font-size: 1rem;
 }
 
-main .insights .progress{
+ .insights .progress{
     position: relative;
     width: 92px;
     height: 92px;
     border-radius: 50%;
 }
 
-main .insights svg{
+ .insights svg{
     width: 7rem;
     height: 7rem;
 }
 
-main .insights svg circle{
+ .insights svg circle{
     fill: none;
     stroke: var(--color-primary);
     stroke-width: 14;
@@ -287,22 +360,22 @@ main .insights svg circle{
     stroke-dashoffset: 92;
 }
 
-main .insights .sales svg circle{
+ .insights .sales svg circle{
     stroke-dashoffset: -30;
     stroke-dasharray: 200;
 }
 
-main .insights .orders svg circle{
+ .insights .orders svg circle{
     stroke-dashoffset: 20;
     stroke-dasharray: 80;
 }
 
-main .insights .profit svg circle{
+ .insights .profit svg circle{
     stroke-dashoffset: 35;
     stroke-dasharray: 110;
 }
 
-main .insights .progress .number{
+ .insights .progress .number{
     position: absolute;
     top: 0;
     left: 0;
@@ -313,7 +386,38 @@ main .insights .progress .number{
     align-items: center;
 }
 
-main .insights small{
+ .insights small{
     margin-top: 1.3rem;
     display: block;
+}
+
+/* ================= Table ================= */
+.table-container .tbl-ext-btn-container{
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+}
+.table-container h2{
+ margin-bottom: 0.8rem;
+}
+ table{
+    background: var(--color-white);
+    width: 100%;
+    border-radius: var(--card-border-radius);
+    padding: var(--card-padding);
+    text-align: center;
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+}
+ table:hover{
+    box-shadow: none;
+}
+table tbody td{
+    height: 2.8rem;
+    border-bottom: 1px solid var(--color-light);
+    color: var(--color-dark-variant);
+}
+
+table tbody tr:last-child td{
+    border: none;
 }
