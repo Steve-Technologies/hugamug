@@ -138,6 +138,11 @@ require '../functions.php';
                 <!-- ----- End of Profit ----- -->
             </div>
             <!-- ----- End of Insights ----- -->
+            <div style="margin-top: 2rem;" class="chart-container">
+                <h2>Analytics</h2>
+              <canvas id="chart"></canvas>
+            </div>
+            <!-- End of Analytics -->
             <div style="margin-top: 2rem;" class="table-container">
                 <h2>Recent Orders</h2>
                 <table>
@@ -229,12 +234,16 @@ require '../functions.php';
                 </div>
                 
             </div>
+            <!-- End of Table -->
+
         </main>
         <!-- ------------- End of Main ------------- -->
         <div class="right">
 
         </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="dash_script.js"></script>
 </body>
 
 </html>

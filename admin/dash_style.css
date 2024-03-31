@@ -9,12 +9,12 @@
     --color-info-dark: #7d8da1;
     --color-info-light: #dce1eb;
     --color-dark: #363949;
-    --color-light: rgba(132, 139, 200, 0.18);
+    --color-light: #848bc82e;
     --color-primary-variant: #111e88;
     --color-dark-variant: #677483;
     --color-background: #f6f6f9;
-    --color-cancelled: rgb(150, 150, 150);
-    --color-dining: rgb(7, 134, 176);
+    --color-cancelled: #969696;
+    --color-dining: #0786b0;
 
     --card-border-radius: 2rem;
     --border-radius-1: 0.4rem;
@@ -420,4 +420,25 @@ table tbody td{
 
 table tbody tr:last-child td{
     border: none;
+}
+/* Chart */
+
+.chart-container{
+    margin-top: 1rem;
+}
+.chart-container h2{
+margin-bottom: 0.8rem;
+}
+
+#chart{
+    background: var(--color-white);
+    max-width: 100%;
+    margin-top: 1rem;
+    border-radius: var(--card-border-radius);
+    padding: var(--card-padding);
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+}
+#chart:hover{
+    box-shadow: none;
 }
