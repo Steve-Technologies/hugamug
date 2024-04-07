@@ -140,6 +140,9 @@ require '../functions.php';
             <!-- ----- End of Insights ----- -->
             <div style="margin-top: 2rem;" class="chart-container">
                 <h2>Analytics</h2>
+                <div class="dbtngrp">
+                    <button type="button" class="primary-btn" onclick="swap(this)">Sales ()</button>
+                </div>
               <canvas id="chart"></canvas>
             </div>
             <!-- End of Analytics -->

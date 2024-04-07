@@ -10,7 +10,7 @@
     --color-info-light: #dce1eb;
     --color-dark: #363949;
     --color-light: #848bc82e;
-    --color-primary-variant: #111e88;
+    --color-secondary: #a27424;
     --color-dark-variant: #677483;
     --color-background: #f6f6f9;
     --color-cancelled: #969696;
@@ -175,6 +175,14 @@ b{
 .primary-btn:hover{
     background-color: transparent;
     color: var(--color-primary);
+}
+.primary-btn.active{
+    background: var(--color-secondary);
+    border-color: var(--color-secondary);
+}
+.primary-btn.active:hover{
+    background-color: transparent;
+    color: var(--color-secondary);
 }
 
 .btn-col{

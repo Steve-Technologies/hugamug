@@ -22,9 +22,6 @@ const colors = {
 const chart = document.querySelector('#chart').getContext('2d');
 
 //new chart instance
-const bmthdt =[{x : 'Jan', y: 20},{x : 'Feb', y: 10},{x : 'Mar', y: 15},{x : 'Apr', y: 25},{x : 'May', y: 20},{x : 'Jun', y: 7}]
-const smthdt =[{x : 'Jan', y: 10},{x : 'Feb', y: 15},{x : 'Mar', y: 11},{x : 'Apr', y: 20},{x : 'May', y: 5},{x : 'Jun', y: 2}]
-const mdata = [{name : 'Burger',data : bmthdt , color : '#ffbb55'},{name : 'Sandwich',data : smthdt , color : '#da0a1c'}];
 const chartobj = new Chart(chart,{
     type : 'bar',
     options : {
@@ -66,4 +63,34 @@ function addData(chart, newDatas) {
     chart.update();
 }
 
+function changeData(chart,newDatas) {
+    newdtsets = []
+    newDatas.forEach((newData) => {
+        newdtsets.push({
+       label : newData.name,
+       data : newData.data,
+       borderColor : newData.color,
+       backgroundColor : newData.color,
+       borderWidth : 2
+        })
+
+    });
+    chart.data.datasets = newdtsets;
+    chart.update();
+}
+
+// 1st Datasets
+const bmthdt =[{x : 'Jan', y: 20},{x : 'Feb', y: 10},{x : 'Mar', y: 15},{x : 'Apr', y: 25},{x : 'May', y: 20},{x : 'Jun', y: 7}]
+const smthdt =[{x : 'Jan', y: 10},{x : 'Feb', y: 15},{x : 'Mar', y: 11},{x : 'Apr', y: 20},{x : 'May', y: 5},{x : 'Jun', y: 2}]
+const mdata = [{name : 'Burger',data : bmthdt , color : '#ffbb55'},{name : 'Sandwich',data : smthdt , color : '#da0a1c'}];
+
+const bmthdt2 =[{x : 'Jan', y: 10},{x : 'Feb', y: 25},{x : 'Mar', y: 5},{x : 'Apr', y: 2},{x : 'May', y: 13},{x : 'Jun', y: 7}]
+const smthdt2 =[{x : 'Jan', y: 5},{x : 'Feb', y: 10},{x : 'Mar', y: 11},{x : 'Apr', y: 25},{x : 'May', y: 9},{x : 'Jun', y: 2}]
+const mdata2 = [{name : 'Pizza',data : bmthdt2 , color : '#ffbb55'},{name : 'Taco',data : smthdt2 , color : '#da0a1c'}];
+
+function swap(btn){
+    changeData(chartobj,mdata2)
+    btn.classList.add("active")
+}
 addData(chartobj,mdata);
+
