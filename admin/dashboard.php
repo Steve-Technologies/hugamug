@@ -140,10 +140,33 @@ require '../functions.php';
             <!-- ----- End of Insights ----- -->
             <div style="margin-top: 2rem;" class="chart-container">
                 <h2>Analytics</h2>
+                <div class="reports-container">
+                   <div class="report-types-container">
+                    <div class="report-type">
+                        <span class="material-symbols-rounded">
+                            shopping_cart
+                        </span>
+                        <h3>Sales</h3>
+                    </div>
+                    <div class="report-type">
+                        <span class="material-symbols-rounded">
+                            shopping_cart
+                        </span>
+                        <h3>Orders</h3>
+                    </div>
+                    <div class="report-type">
+                        <span class="material-symbols-rounded">
+                            shopping_cart
+                        </span>
+                        <h3>Profit</h3>
+                    </div>
+                   </div>
+                <div class="core-chart-container">
                 <div class="dbtngrp">
-                    <button type="button" class="primary-btn" onclick="swap(this)">Sales ()</button>
+                    <button type="button" class="primary-btn" onclick="swap(this)">Amount</button>
                 </div>
               <canvas id="chart"></canvas>
+              </div>
             </div>
             <!-- End of Analytics -->
             <div style="margin-top: 2rem;" class="table-container">
