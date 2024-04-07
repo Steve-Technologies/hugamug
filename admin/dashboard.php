@@ -75,7 +75,7 @@ require '../functions.php';
             <div class="insights">
                 <div class="sales">
                     <span class="material-symbols-rounded">
-                        mintmark
+                        attach_money
                     </span>
                     <div class="middle">
                         <div class="left">
@@ -141,126 +141,143 @@ require '../functions.php';
             <div style="margin-top: 2rem;" class="chart-container">
                 <h2>Analytics</h2>
                 <div class="reports-container">
-                   <div class="report-types-container">
-                    <div class="report-type">
-                        <span class="material-symbols-rounded">
-                            shopping_cart
-                        </span>
-                        <h3>Sales</h3>
+                    <div class="report-types-container">
+                        <div class="report-type">
+                            <span class="material-symbols-rounded">
+                                attach_money
+                            </span>
+                            <h3>Sales</h3>
+                        </div>
+                        <div class="report-type">
+                            <span class="material-symbols-rounded">
+                                mintmark
+                            </span>
+                            <h3>Refunds</h3>
+                        </div>
+                        <div class="report-type">
+                            <span class="material-symbols-rounded">
+                                sell
+                            </span>
+                            <h3>Discounts</h3>
+                        </div>
+                        <div class="report-type">
+                            <span class="material-symbols-rounded">
+                                monetization_on
+                            </span>
+                            <h3>Net Sales</h3>
+                        </div>
+                        <div class="report-type">
+                            <span class="material-symbols-rounded">
+                                savings
+                            </span>
+                            <h3>Profit</h3>
+                        </div>
                     </div>
-                    <div class="report-type">
-                        <span class="material-symbols-rounded">
-                            shopping_cart
-                        </span>
-                        <h3>Orders</h3>
+                    <div class="core-chart-container">
+                        <div class="dbtngrp">
+                            <button type="button" class="primary-btn" onclick="swap_data(this)"><span class="material-symbols-rounded">
+                                    attach_money
+                                </span><span>Amount</span></button>
+                                <button type="button" class="primary-btn" onclick="swap_chart(this)"><span class="material-symbols-rounded">
+                                    bar_chart
+                                </span><span>Bar Chart</span></button>
+                        </div>
+                        <canvas id="chart"></canvas>
                     </div>
-                    <div class="report-type">
-                        <span class="material-symbols-rounded">
-                            shopping_cart
-                        </span>
-                        <h3>Profit</h3>
-                    </div>
-                   </div>
-                <div class="core-chart-container">
-                <div class="dbtngrp">
-                    <button type="button" class="primary-btn" onclick="swap(this)">Amount</button>
                 </div>
-              <canvas id="chart"></canvas>
-              </div>
-            </div>
-            <!-- End of Analytics -->
-            <div style="margin-top: 2rem;" class="table-container">
-                <h2>Recent Orders</h2>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Order ID</th>
-                            <th>Customer Name</th>
-                            <th>Table No:</th>
-                            <th>Status</th>
-                            <th>Amount</th>
-                            <th>Type</th>
-                            <th tooltip="Waiter/Online">Source</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1000</td>
-                            <td>Binoy</td>
-                            <td>2</td>
-                            <td class="status-rejected"><span>Rejected</span></td>
-                            <td>TZS 2000</td>
-                            <td>Dine in</td>
-                            <td><a href="#">Nobel</a></td>
-                            <td class="btn-col">
-                                <button tooltip="View" class="primary-btn tooltip"><span class="material-symbols-rounded">
-                                        visibility
-                                    </span></button>
-                                <a href="#" tooltip="Edit" class="primary-btn"><span class="material-symbols-rounded">
-                                        edit
-                                    </span></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1000</td>
-                            <td>Binoy</td>
-                            <td>2</td>
-                            <td class="status-cancelled"><span>Cancelled</span></td>
-                            <td>TZS 2000</td>
-                            <td>Dine in</td>
-                            <td>Online</td>
-                            <td class="btn-col">
-                                <button tooltip="View" class="primary-btn tooltip"><span class="material-symbols-rounded">
-                                        visibility
-                                    </span></button>
-                                <a href="#" tooltip="Edit" class="primary-btn"><span class="material-symbols-rounded">
-                                        edit
-                                    </span></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1000</td>
-                            <td>Binoy</td>
-                            <td>2</td>
-                            <td class="status-processing"><span>Preparing</span></td>
-                            <td>TZS 2000</td>
-                            <td>Dine in</td>
-                            <td><a href="#">Philip</a></td>
-                            <td class="btn-col">
-                                <button tooltip="View" class="primary-btn tooltip"><span class="material-symbols-rounded">
-                                        visibility
-                                    </span></button>
-                                <a href="#" tooltip="Edit" class="primary-btn"><span class="material-symbols-rounded">
-                                        edit
-                                    </span></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>1000</td>
-                            <td>Binoy</td>
-                            <td>2</td>
-                            <td class="status-completed"><span>Completed</span></td>
-                            <td>TZS 2000</td>
-                            <td>Dine in</td>
-                            <td><a href="#">Micheal</a></td>
-                            <td class="btn-col">
-                                <button tooltip="View" class="primary-btn tooltip"><span class="material-symbols-rounded">
-                                        visibility
-                                    </span></button>
-                                <a href="#" tooltip="Edit" class="primary-btn"><span class="material-symbols-rounded">
-                                        edit
-                                    </span></a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="tbl-ext-btn-container">
-                <a class="primary-btn" href="#">Show All</a>
+                <!-- End of Analytics -->
+                <div style="margin-top: 2rem;" class="table-container">
+                    <h2>Recent Orders</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Order ID</th>
+                                <th>Customer Name</th>
+                                <th>Table No:</th>
+                                <th>Status</th>
+                                <th>Amount</th>
+                                <th>Type</th>
+                                <th tooltip="Waiter/Online">Source</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1000</td>
+                                <td>Binoy</td>
+                                <td>2</td>
+                                <td class="status-rejected"><span>Rejected</span></td>
+                                <td>TZS 2000</td>
+                                <td>Dine in</td>
+                                <td><a href="#">Nobel</a></td>
+                                <td class="btn-col">
+                                    <button tooltip="View" class="primary-btn tooltip"><span class="material-symbols-rounded">
+                                            visibility
+                                        </span></button>
+                                    <a href="#" tooltip="Edit" class="primary-btn"><span class="material-symbols-rounded">
+                                            edit
+                                        </span></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>1000</td>
+                                <td>Binoy</td>
+                                <td>2</td>
+                                <td class="status-cancelled"><span>Cancelled</span></td>
+                                <td>TZS 2000</td>
+                                <td>Dine in</td>
+                                <td>Online</td>
+                                <td class="btn-col">
+                                    <button tooltip="View" class="primary-btn tooltip"><span class="material-symbols-rounded">
+                                            visibility
+                                        </span></button>
+                                    <a href="#" tooltip="Edit" class="primary-btn"><span class="material-symbols-rounded">
+                                            edit
+                                        </span></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>1000</td>
+                                <td>Binoy</td>
+                                <td>2</td>
+                                <td class="status-processing"><span>Preparing</span></td>
+                                <td>TZS 2000</td>
+                                <td>Dine in</td>
+                                <td><a href="#">Philip</a></td>
+                                <td class="btn-col">
+                                    <button tooltip="View" class="primary-btn tooltip"><span class="material-symbols-rounded">
+                                            visibility
+                                        </span></button>
+                                    <a href="#" tooltip="Edit" class="primary-btn"><span class="material-symbols-rounded">
+                                            edit
+                                        </span></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>1000</td>
+                                <td>Binoy</td>
+                                <td>2</td>
+                                <td class="status-completed"><span>Completed</span></td>
+                                <td>TZS 2000</td>
+                                <td>Dine in</td>
+                                <td><a href="#">Micheal</a></td>
+                                <td class="btn-col">
+                                    <button tooltip="View" class="primary-btn tooltip"><span class="material-symbols-rounded">
+                                            visibility
+                                        </span></button>
+                                    <a href="#" tooltip="Edit" class="primary-btn"><span class="material-symbols-rounded">
+                                            edit
+                                        </span></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="tbl-ext-btn-container">
+                        <a class="primary-btn" href="#">Show All</a>
+                    </div>
+
                 </div>
-                
-            </div>
-            <!-- End of Table -->
+                <!-- End of Table -->
 
         </main>
         <!-- ------------- End of Main ------------- -->

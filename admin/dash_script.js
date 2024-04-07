@@ -88,13 +88,28 @@ const bmthdt2 =[{x : 'Jan', y: 10},{x : 'Feb', y: 25},{x : 'Mar', y: 5},{x : 'Ap
 const smthdt2 =[{x : 'Jan', y: 5},{x : 'Feb', y: 10},{x : 'Mar', y: 11},{x : 'Apr', y: 25},{x : 'May', y: 9},{x : 'Jun', y: 2}]
 const mdata2 = [{name : 'Burger',data : bmthdt2 , color : '#ffbb55'},{name : 'Sandwich',data : smthdt2 , color : '#da0a1c'}];
 
-function swap(btn){
-    if(btn.innerText=='Amount'){
+function swap_data(btn){
+    if(btn.children[1].innerText=='Amount'){
     changeData(chartobj,mdata2)
-    btn.innerText='Qty';}
+    btn.children[0].innerText='stacks';
+    btn.children[1].innerText='Qty';}
     else{
     changeData(chartobj,mdata)
-    btn.innerText='Amount';
+    btn.children[0].innerText='attach_money';
+    btn.children[1].innerText='Amount';
+    }}
+function swap_chart(btn){
+    console.log(btn)
+    if(btn.children[1].innerText=='Bar Chart'){
+        chartobj.config.type = 'line';
+        chartobj.update();
+        btn.children[0].innerText='show_chart';
+        btn.children[1].innerText='Line Chart';}
+    else{
+        chartobj.config.type = 'bar';
+        btn.children[0].innerText='bar_chart';
+        btn.children[1].innerText='Bar Chart';
+        chartobj.update();
     }
 }
 addData(chartobj,mdata);
