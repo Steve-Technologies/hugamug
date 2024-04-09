@@ -142,31 +142,31 @@ require '../functions.php';
                 <h2>Analytics</h2>
                 <div class="reports-container">
                     <div class="report-types-container">
-                        <div class="report-type">
+                        <div class="report-type active" id="sales">
                             <span class="material-symbols-rounded">
                                 attach_money
                             </span>
                             <h3>Sales</h3>
                         </div>
-                        <div class="report-type">
+                        <div class="report-type" id="refunds">
                             <span class="material-symbols-rounded">
                                 mintmark
                             </span>
                             <h3>Refunds</h3>
                         </div>
-                        <div class="report-type">
+                        <div class="report-type" id="discounts">
                             <span class="material-symbols-rounded">
                                 sell
                             </span>
                             <h3>Discounts</h3>
                         </div>
-                        <div class="report-type">
+                        <div class="report-type" id="net_sales">
                             <span class="material-symbols-rounded">
                                 monetization_on
                             </span>
                             <h3>Net Sales</h3>
                         </div>
-                        <div class="report-type">
+                        <div class="report-type" id="profit">
                             <span class="material-symbols-rounded">
                                 savings
                             </span>
@@ -175,10 +175,10 @@ require '../functions.php';
                     </div>
                     <div class="core-chart-container">
                         <div class="dbtngrp">
-                            <button type="button" class="primary-btn" onclick="swap_data(this)"><span class="material-symbols-rounded">
+                            <button type="button" class="primary-btn metric_swap" data-metric="amount" onclick="amt_qty_swap(this)"><span class="material-symbols-rounded">
                                     attach_money
                                 </span><span>Amount</span></button>
-                                <button type="button" class="primary-btn" onclick="swap_chart(this)"><span class="material-symbols-rounded">
+                                <button type="button" class="primary-btn" onclick="swap_chart_type(this)"><span class="material-symbols-rounded">
                                     bar_chart
                                 </span><span>Bar Chart</span></button>
                         </div>

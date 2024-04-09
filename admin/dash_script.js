@@ -1,5 +1,7 @@
+//Colors
 const colors = {
-    colorPrimary: "#e4c590",
+    colorPrimary: "#a37424",
+    colorSecondary: '#e4c590',
     colorDanger: "#da0a1c",
     colorSuccess: "#04a447",
     colorWarning: "#ffbb55",
@@ -14,13 +16,72 @@ const colors = {
     colorCancelled: "#969696",
     colorDining: "#0786b0"
   };
-  
-  
+
+// Dummy Datasets that would be actually coming from APIs
+    //sales
+        //amount
+const burger_sales_amount_data =[{x : 'Jan', y: 20000},{x : 'Feb', y: 10000},{x : 'Mar', y: 15000},{x : 'Apr', y: 25000},{x : 'May', y: 20000},{x : 'Jun', y: 7000}]
+const sandwich_sales_amount_data =[{x : 'Jan', y: 10000},{x : 'Feb', y: 15000},{x : 'Mar', y: 11000},{x : 'Apr', y: 20000},{x : 'May', y: 5000},{x : 'Jun', y: 2000}]
+const sales_amount_data = [{name : 'Burger',data : burger_sales_amount_data , color : '#ffbb55'},{name : 'Sandwich',data : sandwich_sales_amount_data , color : '#da0a1c'}];
+
+        //qty
+const burger_sales_qty_data =[{x : 'Jan', y: 10},{x : 'Feb', y: 25},{x : 'Mar', y: 5},{x : 'Apr', y: 2},{x : 'May', y: 13},{x : 'Jun', y: 7}]
+const sandwich_sales_qty_data =[{x : 'Jan', y: 5},{x : 'Feb', y: 10},{x : 'Mar', y: 11},{x : 'Apr', y: 25},{x : 'May', y: 9},{x : 'Jun', y: 2}]
+const sales_qty_data = [{name : 'Burger',data : burger_sales_qty_data , color : '#ffbb55'},{name : 'Sandwich',data : sandwich_sales_qty_data , color : '#da0a1c'}];
+
+const sales_data = {amount : sales_amount_data, qty : sales_qty_data};
+
+    //refunds
+        //qty
+const refund_qty_raw_data =[{x : 'Jan', y: 5},{x : 'Feb', y: 3},{x : 'Mar', y: 8},{x : 'Apr', y: 10},{x : 'May', y: 11},{x : 'Jun', y: 2}]
+const refund_qty_data = [{name : 'Refunds' ,data : refund_qty_raw_data , color : '#a37424'}];
+        //amount
+const refund_amount_raw_data =[{x : 'Jan', y: 2500},{x : 'Feb', y: 1500},{x : 'Mar', y: 4000},{x : 'Apr', y: 5000},{x : 'May', y: 5500},{x : 'Jun', y: 1000}]
+const refund_amount_data = [{name : 'Refunds' ,data : refund_amount_raw_data , color : '#a37424'}];
+
+const refund_data = {amount : refund_amount_data , qty : refund_qty_data};
+
+    //discounts
+        //qty
+        const discount_qty_raw_data =[{x : 'Jan', y: 10},{x : 'Feb', y: 13},{x : 'Mar', y: 2},{x : 'Apr', y: 5},{x : 'May', y: 7},{x : 'Jun', y: 15}]
+        const discount_qty_data = [{name : 'Discounts' ,data : discount_qty_raw_data , color : '#a37424'}];
+                //amount
+        const discount_amount_raw_data =[{x : 'Jan', y: 1000},{x : 'Feb', y: 1300},{x : 'Mar', y: 1000},{x : 'Apr', y: 7000},{x : 'May', y: 5500},{x : 'Jun', y: 1500}]
+        const discount_amount_data = [{name : 'Discounts' ,data : discount_amount_raw_data , color : '#a37424'}];
+        
+        const discount_data = {amount : discount_amount_data , qty : discount_qty_data};
+
+// final chart data object
+const chart_data = {sales : sales_data, refunds : refund_data, discounts : discount_data};
+
+// Actual JS Script
+
+//utils
+function toggle_active(e,activated){
+    parent = e.parentElement;
+    parent.querySelector('.active').classList.remove('active');
+    e.classList.add('active');
+    activated(e);
+ }
+
+
+//chart
+//report-type
+// const report_type_map = {'sales': };
+report_menu = document.querySelectorAll('.report-type');
+report_menu.forEach((menu) => {
+    menu.addEventListener('click', () => {
+        toggle_active(menu, (e) => {
+            btn = document.querySelector('.metric_swap');
+            changeData(chartobj,chart_data[e.id][btn.dataset.metric]);});
+        })
+    })
+
+
 
 
 
 const chart = document.querySelector('#chart').getContext('2d');
-
 //new chart instance
 const chartobj = new Chart(chart,{
     type : 'bar',
@@ -64,6 +125,7 @@ function addData(chart, newDatas) {
 }
 
 function changeData(chart,newDatas) {
+    console.log(newDatas);
     newdtsets = []
     newDatas.forEach((newData) => {
         newdtsets.push({
@@ -79,26 +141,20 @@ function changeData(chart,newDatas) {
     chart.update();
 }
 
-// 1st Datasets
-const bmthdt =[{x : 'Jan', y: 20000},{x : 'Feb', y: 10000},{x : 'Mar', y: 15000},{x : 'Apr', y: 25000},{x : 'May', y: 20000},{x : 'Jun', y: 7000}]
-const smthdt =[{x : 'Jan', y: 10000},{x : 'Feb', y: 15000},{x : 'Mar', y: 11000},{x : 'Apr', y: 20000},{x : 'May', y: 5000},{x : 'Jun', y: 2000}]
-const mdata = [{name : 'Burger',data : bmthdt , color : '#ffbb55'},{name : 'Sandwich',data : smthdt , color : '#da0a1c'}];
 
-const bmthdt2 =[{x : 'Jan', y: 10},{x : 'Feb', y: 25},{x : 'Mar', y: 5},{x : 'Apr', y: 2},{x : 'May', y: 13},{x : 'Jun', y: 7}]
-const smthdt2 =[{x : 'Jan', y: 5},{x : 'Feb', y: 10},{x : 'Mar', y: 11},{x : 'Apr', y: 25},{x : 'May', y: 9},{x : 'Jun', y: 2}]
-const mdata2 = [{name : 'Burger',data : bmthdt2 , color : '#ffbb55'},{name : 'Sandwich',data : smthdt2 , color : '#da0a1c'}];
 
-function swap_data(btn){
-    if(btn.children[1].innerText=='Amount'){
-    changeData(chartobj,mdata2)
-    btn.children[0].innerText='stacks';
-    btn.children[1].innerText='Qty';}
-    else{
-    changeData(chartobj,mdata)
-    btn.children[0].innerText='attach_money';
-    btn.children[1].innerText='Amount';
-    }}
-function swap_chart(btn){
+
+function amt_qty_swap(btn){
+    active_tab = document.querySelector('.report-type.active');
+    console.log(btn.dataset.metric);
+    metric_to_change = btn.dataset.metric=='amount'? 'qty' : 'amount';
+    changeData(chartobj,chart_data[active_tab.id][metric_to_change]);
+    btn.children[0].innerText= btn.dataset.metric=='amount'? 'stacks' : 'attach_money';
+    btn.children[1].innerText=btn.dataset.metric=='amount'? 'Qty' : 'Amount';
+    btn.dataset.metric= metric_to_change;
+   }
+    
+function swap_chart_type(btn){
     console.log(btn)
     if(btn.children[1].innerText=='Bar Chart'){
         chartobj.config.type = 'line';
@@ -112,5 +168,5 @@ function swap_chart(btn){
         chartobj.update();
     }
 }
-addData(chartobj,mdata);
+addData(chartobj,sales_amount_data);
 

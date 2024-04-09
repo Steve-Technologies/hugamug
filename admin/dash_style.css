@@ -472,20 +472,21 @@ table tbody tr:last-child td{
     align-items: center;
     justify-content: center;
     transition: all 300ms ease-in;
+    color: var(--color-primary);
 }
 .report-type:hover{
-    background-color: var(--color-primary);
-    color: white;
+    background-color: var(--color-secondary);
+    color: var(--color-white);
 }
 
 .report-type:active{
-    background-color: var(--color-secondary);
-    color: white;
+    background-color: var(--color-primary);
+    color: var(--color-white);
 }
 
 .report-type.active{
-    background-color: var(--color-secondary);
-    color: white;
+    background-color: var(--color-primary);
+    color: var(--color-white);
 }
 .report-type:last-child{
     border-right: none!important;
