@@ -15,56 +15,120 @@ const colors = {
     colorBackground: "#f6f6f9",
     colorCancelled: "#969696",
     colorDining: "#0786b0"
-  };
+};
 
-// Dummy Datasets that would be actually coming from APIs
-    //sales
-        //amount
-const burger_sales_amount_data =[{x : 'Jan', y: 20000},{x : 'Feb', y: 10000},{x : 'Mar', y: 15000},{x : 'Apr', y: 25000},{x : 'May', y: 20000},{x : 'Jun', y: 7000}]
-const sandwich_sales_amount_data =[{x : 'Jan', y: 10000},{x : 'Feb', y: 15000},{x : 'Mar', y: 11000},{x : 'Apr', y: 20000},{x : 'May', y: 5000},{x : 'Jun', y: 2000}]
-const sales_amount_data = [{name : 'Burger',data : burger_sales_amount_data , color : '#ffbb55'},{name : 'Sandwich',data : sandwich_sales_amount_data , color : '#da0a1c'}];
+if(document.querySelector('#chart')){
+const chartobj = new Chart(chart, {
+    type: 'bar',
+    options: {
+        plugins: {
+            legend: {
+                position: 'bottom',
+                labels: {
+                    boxWidth: 10,
+                    color: colors.colorInfoDark,
+                }
+            }
+        },
+        scales: {
+            x: {
+                grid: {
+                    display: false
+                }
+            },
+            y: {
+                grid: {
+                    display: true
+                }
+            }
+        },
+        responsive: true
+    }
+})
+let chart_data;
+//fetch data
+fetch('chart_data.json')
+  .then(response => {
+    // Check if the response is successful
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    // Parse the JSON data from the response
+    return response.json();
+  })
+  .then(data => {
+    // Assign the fetched JSON data to a variable
+    chart_data = data;
+    addData(chartobj, chart_data.sales.amount);
+    // Now you can use the jsonData variable to access the fetched data
+  })
+  .catch(error => {
+    console.error('There was a problem fetching the data:', error);
+  });
+}
+//order data
+order_view = document.querySelector('#order_view');
+let orders;
+if(document.querySelector('#order-table tbody')){
+fetch('order_data.json')
+.then(response => {
+  // Check if the response is successful
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+  // Parse the JSON data from the response
+  return response.json();
+})
+.then(data => {
+  // Assign the fetched JSON data to a variable
+  orders = data;
 
-        //qty
-const burger_sales_qty_data =[{x : 'Jan', y: 10},{x : 'Feb', y: 25},{x : 'Mar', y: 5},{x : 'Apr', y: 2},{x : 'May', y: 13},{x : 'Jun', y: 7}]
-const sandwich_sales_qty_data =[{x : 'Jan', y: 5},{x : 'Feb', y: 10},{x : 'Mar', y: 11},{x : 'Apr', y: 25},{x : 'May', y: 9},{x : 'Jun', y: 2}]
-const sales_qty_data = [{name : 'Burger',data : burger_sales_qty_data , color : '#ffbb55'},{name : 'Sandwich',data : sandwich_sales_qty_data , color : '#da0a1c'}];
+    order_table_tbody= document.querySelector('#order-table tbody');
+    fetch_order_table(orders, order_table_tbody,order_view)
+  // Now you can use the jsonData variable to access the fetched data
+})
+.catch(error => {
+  console.error('There was a problem fetching the data:', error);
+});
+}
 
-const sales_data = {amount : sales_amount_data, qty : sales_qty_data};
+let orders2;
+if(document.querySelector('#order-table-main tbody')){
+fetch('main_order_data.json')
+.then(response => {
+  // Check if the response is successful
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+  // Parse the JSON data from the response
+  return response.json();
+})
+.then(data => {
+  // Assign the fetched JSON data to a variable
+  orders2 = data;
 
-    //refunds
-        //qty
-const refund_qty_raw_data =[{x : 'Jan', y: 5},{x : 'Feb', y: 3},{x : 'Mar', y: 8},{x : 'Apr', y: 10},{x : 'May', y: 11},{x : 'Jun', y: 2}]
-const refund_qty_data = [{name : 'Refunds' ,data : refund_qty_raw_data , color : '#a37424'}];
-        //amount
-const refund_amount_raw_data =[{x : 'Jan', y: 2500},{x : 'Feb', y: 1500},{x : 'Mar', y: 4000},{x : 'Apr', y: 5000},{x : 'May', y: 5500},{x : 'Jun', y: 1000}]
-const refund_amount_data = [{name : 'Refunds' ,data : refund_amount_raw_data , color : '#a37424'}];
+    order_table_tbody= document.querySelector('#order-table-main tbody');
+    fetch_order_table(orders2, order_table_tbody, order_view)
+  // Now you can use the jsonData variable to access the fetched data
+})
+.catch(error => {
+  console.error('There was a problem fetching the data:', error);
+});
+}
 
-const refund_data = {amount : refund_amount_data , qty : refund_qty_data};
 
-    //discounts
-        //qty
-        const discount_qty_raw_data =[{x : 'Jan', y: 10},{x : 'Feb', y: 13},{x : 'Mar', y: 2},{x : 'Apr', y: 5},{x : 'May', y: 7},{x : 'Jun', y: 15}]
-        const discount_qty_data = [{name : 'Discounts' ,data : discount_qty_raw_data , color : '#a37424'}];
-                //amount
-        const discount_amount_raw_data =[{x : 'Jan', y: 1000},{x : 'Feb', y: 1300},{x : 'Mar', y: 1000},{x : 'Apr', y: 7000},{x : 'May', y: 5500},{x : 'Jun', y: 1500}]
-        const discount_amount_data = [{name : 'Discounts' ,data : discount_amount_raw_data , color : '#a37424'}];
-        
-        const discount_data = {amount : discount_amount_data , qty : discount_qty_data};
-
-// final chart data object
-const chart_data = {sales : sales_data, refunds : refund_data, discounts : discount_data};
 
 // Actual JS Script
 
 //utils
-function toggle_active(e,activated){
+function toggle_active(e, activated) {
     parent = e.parentElement;
     parent.querySelector('.active').classList.remove('active');
     e.classList.add('active');
     activated(e);
- }
+}
 
-
+if(document.querySelector('#chart')){
 //chart
 //chart utils
 /**
@@ -72,18 +136,16 @@ function toggle_active(e,activated){
  * @param {Chart} chart - The chart instance to update.
  * @param {Object} newDatas - An object containing the new data for the chart.
  */
-function changeData(chart,newDatas) {
-    console.log(newDatas);
+function changeData(chart, newDatas) {
     newdtsets = []
     newDatas.forEach((newData) => {
         newdtsets.push({
-       label : newData.name,
-       data : newData.data,
-       borderColor : newData.color,
-       backgroundColor : newData.color,
-       borderWidth : 2
+            label: newData.name,
+            data: newData.data,
+            borderColor: newData.color,
+            backgroundColor: newData.color,
+            borderWidth: 2
         })
-
     });
     chart.data.datasets = newdtsets;
     chart.update();
@@ -95,9 +157,16 @@ report_menu.forEach((menu) => {
     menu.addEventListener('click', () => {
         toggle_active(menu, (e) => {
             btn = document.querySelector('.metric_swap');
-            changeData(chartobj,chart_data[e.id][btn.dataset.metric]);});
-        })
+            if(chart_data[e.id][btn.dataset.metric].length==0)
+            {
+            amt_qty_swap(btn)
+            }
+            btn = document.querySelector('.metric_swap');
+            changeData(chartobj, chart_data[e.id][btn.dataset.metric]);
+        });
     })
+})
+
 
 
 
@@ -105,33 +174,7 @@ report_menu.forEach((menu) => {
 
 const chart = document.querySelector('#chart').getContext('2d');
 //new chart instance
-const chartobj = new Chart(chart,{
-    type : 'bar',
-    options : {
-        plugins : {
-            legend : {
-                position : 'bottom',
-                labels: {
-                    boxWidth: 10,
-                    color : colors.colorInfoDark,
-                  }
-            }
-        },
-        scales : {
-            x : {
-                grid : {
-                    display : false
-                }
-            },
-            y : {
-                grid : {
-                    display : true
-                }
-            }
-        },
-        responsive : true
-    }
-})
+
 /**
  * Adds new data to the chart.
  * @param {Chart} chart - The chart instance to update.
@@ -159,6 +202,8 @@ function addData(chart, newDatas) {
 
 
 
+
+
 /**
  * Swaps the chart data between 'amount' and 'qty' metrics.
  * @param {HTMLButtonElement} btn - The button that triggers the swap.
@@ -166,27 +211,29 @@ function addData(chart, newDatas) {
 function amt_qty_swap(btn) {
     // Get the active tab element
     const active_tab = document.querySelector('.report-type.active');
-    
+  
     // Get the current metric from the button's dataset
     const metric_to_change = btn.dataset.metric === 'amount' ? 'qty' : 'amount';
-    
+
+    if(chart_data[active_tab.id][metric_to_change].length!=0)
+    {
     // Change the data of the chart to the new metric
     changeData(chartobj, chart_data[active_tab.id][metric_to_change]);
-    
+
     // Update the button's text to reflect the new metric
     btn.children[0].innerText = btn.dataset.metric === 'amount' ? 'stacks' : 'attach_money';
     btn.children[1].innerText = btn.dataset.metric === 'amount' ? 'Qty' : 'Amount';
-    
+
     // Update the button's dataset with the new metric
     btn.dataset.metric = metric_to_change;
+    }
 }
-    
+
 /**
  * Swaps the chart type between 'bar' and 'line'.
  * @param {HTMLButtonElement} btn - The button that triggers the swap.
  */
 function swap_chart_type(btn) {
-    console.log(btn);
     if (btn.children[1].innerText === 'Bar Chart') {
         // Changes the chart type to 'line'.
         chartobj.config.type = 'line';
@@ -205,5 +252,75 @@ function swap_chart_type(btn) {
         btn.children[1].innerText = 'Bar Chart';
     }
 }
-addData(chartobj,sales_amount_data);
+}
+
+//order js
+
+function fetch_order_table(orders, table_tbody, view_popup){
+    orders.forEach((order) => {
+        const row = document.createElement('tr');
+        const idCell = document.createElement('td');
+        idCell.textContent = order.id;
+        row.appendChild(idCell);
+        const customerNameCell = document.createElement('td');
+        customerNameCell.textContent = order.customer_name;
+        row.appendChild(customerNameCell);
+        const tableNoCell = document.createElement('td');
+        tableNoCell.textContent = order.table_no;
+        row.appendChild(tableNoCell);
+        const statusCell = document.createElement('td');
+        statusCell.className = order.status === 'rejected' ? 'status-rejected' : order.status === 'cancelled' ? 'status-cancelled' : order.status === 'preparing' ? 'status-preparing' : order.status === 'completed' ? 'status-completed' : order.status === 'preparing' ? 'status-preparing' : '';
+        const statusSpan = document.createElement('span');
+        statusSpan.textContent = order.status.charAt(0).toUpperCase() + order.status.slice(1);
+        statusCell.appendChild(statusSpan);
+        row.appendChild(statusCell);
+        const amountCell = document.createElement('td');
+        amountCell.textContent = `TZS ${order.amount}`;
+        row.appendChild(amountCell);
+        const typeCell = document.createElement('td');
+        typeCell.textContent = order.type;
+        row.appendChild(typeCell);
+        const sourceCell = document.createElement('td');
+        
+        if(order.source!='Online'){
+        const sourceLink = document.createElement('a');
+        sourceLink.href = '#';
+        sourceLink.textContent = order.source;
+        sourceCell.appendChild(sourceLink);
+        }
+        else{
+            sourceCell.textContent = order.source;
+        }
+        row.appendChild(sourceCell);
+        const btnColCell = document.createElement('td');
+        btnColCell.className = 'btn-col';
+        const viewBtn = document.createElement('button');
+        viewBtn.onclick = (e)=>{
+            view_popup.showModal();
+        }
+        viewBtn.tooltip = 'View';
+        viewBtn.className = 'primary-btn tooltip';
+        const viewIcon = document.createElement('span');
+        viewIcon.className = 'material-symbols-rounded';
+        viewIcon.textContent = 'visibility';
+        viewBtn.appendChild(viewIcon);
+        btnColCell.appendChild(viewBtn);
+        const editLink = document.createElement('a');
+        editLink.href = '#';
+        editLink.tooltip = 'Edit';
+        editLink.className = 'primary-btn';
+        const editIcon = document.createElement('span');
+        editIcon.className = 'material-symbols-rounded';
+        editIcon.textContent = 'edit';
+        editLink.appendChild(editIcon);
+        btnColCell.appendChild(editLink);
+        row.appendChild(btnColCell);
+        table_tbody.appendChild(row);
+        });
+ }
+
+ function close_popup(e){
+    console.log(e);
+    e.parentElement.parentElement.parentElement.close();
+ }
 

@@ -13,7 +13,7 @@ require '../functions.php';
 </head>
 
 <body>
-    <div class="container">
+    <div class="container-2">
         <aside>
             <div class="top">
                 <div class="logo">
@@ -27,13 +27,13 @@ require '../functions.php';
                 </div>
             </div>
             <div class="sidebar">
-                <a href="#" class="active">
+                <a href="dashboard.php">
                     <span class="material-symbols-rounded">
                         dashboard
                     </span>
                     <h3>Dashboard</h3>
                 </a>
-                <a href="orders.php">
+                <a href="#" class="active">
                     <span class="material-symbols-rounded">
                         assignment
                     </span>
@@ -74,127 +74,10 @@ require '../functions.php';
         </aside>
         <!-- ---- End of Aside (Sidebar) ---- -->
         <main>
-            <h1>Dashboard</h1>
-            <div class="date">
-                <input type="date">
-            </div>
-            <div class="insights">
-                <div class="sales">
-                    <span class="material-symbols-rounded">
-                        attach_money
-                    </span>
-                    <div class="middle">
-                        <div class="left">
-                            <h3>Total Sales</h3>
-                            <h1>TZS 150,000</h1>
-                        </div>
-                        <div class="progress">
-                            <svg>
-                                <circle cx='38' cy='38' r='36'></circle>
-                            </svg>
-                            <div class="number">
-                                <p>81%</p>
-                            </div>
-                        </div>
-                    </div>
-                    <small class="text-muted">Last 24 Hours</small>
-                </div>
-                <!-- ----- End of Sales ----- -->
-                <div class="orders">
-                    <span class="material-symbols-rounded">
-                        assignment
-                    </span>
-                    <div class="middle">
-                        <div class="left">
-                            <h3>Orders</h3>
-                            <h1>50</h1>
-                        </div>
-                        <div class="progress">
-                            <svg>
-                                <circle cx='38' cy='38' r='36'></circle>
-                            </svg>
-                            <div class="number">
-                                <p>91%</p>
-                            </div>
-                        </div>
-                    </div>
-                    <small class="text-muted">Last 24 Hours</small>
-                </div>
-                <!-- ----- End of Orders ----- -->
-                <div class="profit">
-                    <span class="material-symbols-rounded">
-                        savings
-                    </span>
-                    <div class="middle">
-                        <div class="left">
-                            <h3>Profit</h3>
-                            <h1>TZS 55,000</h1>
-                        </div>
-                        <div class="progress">
-                            <svg>
-                                <circle cx='38' cy='38' r='36'></circle>
-                            </svg>
-                            <div class="number">
-                                <p>89%</p>
-                            </div>
-                        </div>
-                    </div>
-                    <small class="text-muted">Last 24 Hours</small>
-                </div>
-                <!-- ----- End of Profit ----- -->
-            </div>
-            <!-- ----- End of Insights ----- -->
-            <div style="margin-top: 2rem;" class="chart-container">
-                <h2>Analytics</h2>
-                <div class="reports-container">
-                    <div class="report-types-container">
-                        <div class="report-type active" id="sales">
-                            <span class="material-symbols-rounded">
-                                attach_money
-                            </span>
-                            <h3>Sales</h3>
-                        </div>
-                        <div class="report-type" id="refunds">
-                            <span class="material-symbols-rounded">
-                                mintmark
-                            </span>
-                            <h3>Refunds</h3>
-                        </div>
-                        <div class="report-type" id="discounts">
-                            <span class="material-symbols-rounded">
-                                sell
-                            </span>
-                            <h3>Discounts</h3>
-                        </div>
-                        <div class="report-type" id="net_sales">
-                            <span class="material-symbols-rounded">
-                                monetization_on
-                            </span>
-                            <h3>Net Sales</h3>
-                        </div>
-                        <div class="report-type" id="profit">
-                            <span class="material-symbols-rounded">
-                                savings
-                            </span>
-                            <h3>Profit</h3>
-                        </div>
-                    </div>
-                    <div class="core-chart-container">
-                        <div class="dbtngrp">
-                            <button type="button" class="primary-btn metric_swap" data-metric="amount" onclick="amt_qty_swap(this)"><span class="material-symbols-rounded">
-                                    attach_money
-                                </span><span>Amount</span></button>
-                            <button type="button" class="primary-btn" onclick="swap_chart_type(this)"><span class="material-symbols-rounded">
-                                    bar_chart
-                                </span><span>Bar Chart</span></button>
-                        </div>
-                        <canvas id="chart"></canvas>
-                    </div>
-                </div>
-                <!-- End of Analytics -->
+            <h1>Orders</h1>
                 <div style="margin-top: 2rem;" class="table-container">
                     <h2>Recent Orders</h2>
-                    <table id="order-table">
+                    <table id="order-table-main">
                         <thead>
                             <tr>
                                 <th>Order ID</th>
@@ -208,7 +91,7 @@ require '../functions.php';
                             </tr>
                         </thead>
                         <tbody>
-                            <!-- to be filled by fetch_order_table() -->
+                           <!-- to be filled by fetch_order_table() -->
                         </tbody>
                     </table>
                     <dialog id="order_view" class="popups">
@@ -267,7 +150,7 @@ require '../functions.php';
                     </dialog>
 
                     <div class="tbl-ext-btn-container">
-                        <a class="primary-btn" href="#">Show All</a>
+                        <!-- <a class="primary-btn" href="#">Show All</a> -->
                     </div>
 
                 </div>
@@ -275,9 +158,6 @@ require '../functions.php';
 
         </main>
         <!-- ------------- End of Main ------------- -->
-        <div class="right">
-
-        </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="dash_script.js"></script>

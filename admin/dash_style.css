@@ -70,6 +70,27 @@ button{
     grid-template-columns: 14rem auto 23rem;
 }
 
+.card{
+    background: var(--color-white);
+    width: 100%;
+    border-radius: var(--card-border-radius);
+    padding: var(--card-padding);
+    text-align: center;
+    box-shadow: var(--box-shadow);
+    transition: all 300ms ease;
+}
+.card:hover{
+   box-shadow: none;
+}
+
+.container-2{
+    display: grid;
+    width: 96%;
+    margin : 0 auto;
+    gap:1.8rem;
+    grid-template-columns: 14rem auto;
+}
+
 a{
     color: var(--color-primary);
 }
@@ -111,7 +132,7 @@ b{
     color: var(--color-dark);
 }
 
-.status-processing > span{
+.status-preparing > span{
     background-color: var(--color-warning);
     color: var(--color-white);
     border-radius: var(--border-radius-1);
@@ -439,6 +460,37 @@ table tbody td{
 table tbody tr:last-child td{
     border: none;
 }
+
+/*popups*/
+.popups{
+    margin: auto;
+    padding: auto;
+    width: 50%;
+    border-radius: 1rem;
+    padding: 1rem;
+    background-color: var(--color-background);
+}
+.popup-header{
+    display: flex;
+    justify-content: space-between;
+}
+.customer-other-info{
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+}
+.customer-other-info .card{
+    text-align: left;
+}
+.popups .close{
+    display: flex;
+    align-items: center;
+}
+::backdrop {
+    background: var(--color-dark);
+    opacity: 0.75;
+  }
+
 /* Chart */
 .reports-container{
     display: flex;
