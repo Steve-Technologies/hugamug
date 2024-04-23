@@ -66,6 +66,28 @@ function toggle_active(e,activated){
 
 
 //chart
+//chart utils
+/**
+ * Changes the data of the chart.
+ * @param {Chart} chart - The chart instance to update.
+ * @param {Object} newDatas - An object containing the new data for the chart.
+ */
+function changeData(chart,newDatas) {
+    console.log(newDatas);
+    newdtsets = []
+    newDatas.forEach((newData) => {
+        newdtsets.push({
+       label : newData.name,
+       data : newData.data,
+       borderColor : newData.color,
+       backgroundColor : newData.color,
+       borderWidth : 2
+        })
+
+    });
+    chart.data.datasets = newdtsets;
+    chart.update();
+}
 //report-type
 // const report_type_map = {'sales': };
 report_menu = document.querySelectorAll('.report-type');
@@ -110,62 +132,77 @@ const chartobj = new Chart(chart,{
         responsive : true
     }
 })
+/**
+ * Adds new data to the chart.
+ * @param {Chart} chart - The chart instance to update.
+ * @param {Object} newDatas - An object containing the new data for the chart.
+ */
 function addData(chart, newDatas) {
+    // Iterates over the new data and adds it to the chart.
     newDatas.forEach((newData) => {
+        // Adds a new dataset to the chart with the provided data, color, and border width.
         chart.data.datasets.push({
-       label : newData.name,
-       data : newData.data,
-       borderColor : newData.color,
-       backgroundColor : newData.color,
-       borderWidth : 2
-        })
-        
+            label: newData.name,
+            data: newData.data,
+            borderColor: newData.color,
+            backgroundColor: newData.color,
+            borderWidth: 2
+        });
     });
-    chart.update();
-}
 
-function changeData(chart,newDatas) {
-    console.log(newDatas);
-    newdtsets = []
-    newDatas.forEach((newData) => {
-        newdtsets.push({
-       label : newData.name,
-       data : newData.data,
-       borderColor : newData.color,
-       backgroundColor : newData.color,
-       borderWidth : 2
-        })
-
-    });
-    chart.data.datasets = newdtsets;
+    // Updates the chart with the new data.
     chart.update();
 }
 
 
 
 
-function amt_qty_swap(btn){
-    active_tab = document.querySelector('.report-type.active');
-    console.log(btn.dataset.metric);
-    metric_to_change = btn.dataset.metric=='amount'? 'qty' : 'amount';
-    changeData(chartobj,chart_data[active_tab.id][metric_to_change]);
-    btn.children[0].innerText= btn.dataset.metric=='amount'? 'stacks' : 'attach_money';
-    btn.children[1].innerText=btn.dataset.metric=='amount'? 'Qty' : 'Amount';
-    btn.dataset.metric= metric_to_change;
-   }
+
+
+/**
+ * Swaps the chart data between 'amount' and 'qty' metrics.
+ * @param {HTMLButtonElement} btn - The button that triggers the swap.
+ */
+function amt_qty_swap(btn) {
+    // Get the active tab element
+    const active_tab = document.querySelector('.report-type.active');
     
-function swap_chart_type(btn){
-    console.log(btn)
-    if(btn.children[1].innerText=='Bar Chart'){
+    // Get the current metric from the button's dataset
+    const metric_to_change = btn.dataset.metric === 'amount' ? 'qty' : 'amount';
+    
+    // Change the data of the chart to the new metric
+    changeData(chartobj, chart_data[active_tab.id][metric_to_change]);
+    
+    // Update the button's text to reflect the new metric
+    btn.children[0].innerText = btn.dataset.metric === 'amount' ? 'stacks' : 'attach_money';
+    btn.children[1].innerText = btn.dataset.metric === 'amount' ? 'Qty' : 'Amount';
+    
+    // Update the button's dataset with the new metric
+    btn.dataset.metric = metric_to_change;
+}
+    
+/**
+ * Swaps the chart type between 'bar' and 'line'.
+ * @param {HTMLButtonElement} btn - The button that triggers the swap.
+ */
+function swap_chart_type(btn) {
+    console.log(btn);
+    if (btn.children[1].innerText === 'Bar Chart') {
+        // Changes the chart type to 'line'.
         chartobj.config.type = 'line';
+        // Updates the chart with the new type.
         chartobj.update();
-        btn.children[0].innerText='show_chart';
-        btn.children[1].innerText='Line Chart';}
-    else{
+        // Updates the button's text to reflect the new chart type.
+        btn.children[0].innerText = 'show_chart';
+        btn.children[1].innerText = 'Line Chart';
+    } else {
+        // Changes the chart type to 'bar'.
         chartobj.config.type = 'bar';
-        btn.children[0].innerText='bar_chart';
-        btn.children[1].innerText='Bar Chart';
+        // Updates the chart with the new type.
         chartobj.update();
+        // Updates the button's text to reflect the new chart type.
+        btn.children[0].innerText = 'bar_chart';
+        btn.children[1].innerText = 'Bar Chart';
     }
 }
 addData(chartobj,sales_amount_data);
