@@ -13,65 +13,8 @@ require '../functions.php';
 </head>
 
 <body>
-    <div class="container">
-        <aside>
-            <div class="top">
-                <div class="logo">
-                    <img src='<?php echo get_image_from_id($global['site_logo'], 'thumbnail', 'absolute'); ?>' alt="<?php echo $global['site_name'] ?>">
-                    <h2><?php echo $global['site_name'] ?></h2>
-                </div>
-                <div id="close-btn" class="close">
-                    <span class="material-symbols-rounded">
-                        close
-                    </span>
-                </div>
-            </div>
-            <div class="sidebar">
-                <a href="#" class="active">
-                    <span class="material-symbols-rounded">
-                        dashboard
-                    </span>
-                    <h3>Dashboard</h3>
-                </a>
-                <a href="orders.php">
-                    <span class="material-symbols-rounded">
-                        assignment
-                    </span>
-                    <h3>Orders</h3>
-                </a>
-                <a href="#">
-                    <span class="material-symbols-rounded">
-                        monitoring
-                    </span>
-                    <h3>Analytics</h3>
-                </a>
-                <a href="#">
-                    <span class="material-symbols-rounded">
-                        restaurant
-                    </span>
-                    <h3>Menu</h3>
-                </a>
-                <a href="#">
-                    <span class="material-symbols-rounded">
-                        grocery
-                    </span>
-                    <h3>Items</h3>
-                </a>
-                <a href="#">
-                    <span class="material-symbols-rounded">
-                        group
-                    </span>
-                    <h3>Users</h3>
-                </a>
-                <a href="#">
-                    <span class="material-symbols-rounded">
-                        settings
-                    </span>
-                    <h3>Settings</h3>
-                </a>
-
-            </div>
-        </aside>
+    <div id="main-container" class="container">
+        
         <!-- ---- End of Aside (Sidebar) ---- -->
         <main>
             <h1>Dashboard</h1>
@@ -281,6 +224,7 @@ require '../functions.php';
     </div>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="dash_script.js"></script>
+    <script src="templates.js"></script>
 </body>
 
 </html>
