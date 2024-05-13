@@ -67,6 +67,33 @@ $result = $conn->query($sql);
 
         </div>
       </section>
+      <div class="modal fade" id="menu-customise-modal" tabindex="-1" role="dialog" aria-labelledby="cart-modalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header justify-content-between">
+        <h3 class="modal-title" id="menu-customise-label">Customise Food</h3>
+        <button type="button" class=" close">
+        <span aria-hidden="true" style="color:white;scale:1.5;">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="menu-customise-body">
+      <div class="attributes-container" id="attributes-container">
+
+      </div>
+      
+        <!-- item ends -->
+
+        <div id="subtotal-container">
+          <h3>Subtotal</h3>
+          <h3 id="subtotal">TZS 0.00</h3>
+        </div>
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button type="button" class="btn">Checkout</button>
+      </div>
+    </div>
+  </div>
+</div>
       </body>
       <?php 
 include_once('footer.php'); ?>
