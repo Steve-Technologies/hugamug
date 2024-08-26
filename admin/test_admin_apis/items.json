@@ -1,0 +1,115 @@
+{
+    "currency_prefix" : "TZS",
+    "low_threshold": 15,
+    "critical_threshold" : 5,
+    "data":[
+    {
+        "SKU": 1,
+        "item_name": "Chicken Burger",
+        "category": "Burger & Sandwich",
+        "stock": 10,
+        "cost": 200,
+        "selling_price": 300,
+        "profit": 100
+    },
+    {
+        "SKU": 2,
+        "item_name": "Veggie Burger",
+        "category": "Burger & Sandwich",
+        "stock": 15,
+        "cost": 150,
+        "selling_price": 250,
+        "profit": 100
+    },
+    {
+        "SKU": 3,
+        "item_name": "Cheese Pizza",
+        "category": "Pizza",
+        "stock": 20,
+        "cost": 250,
+        "selling_price": 400,
+        "profit": 150
+    },
+    {
+        "SKU": 4,
+        "item_name": "Pepperoni Pizza",
+        "category": "Pizza",
+        "stock": 10,
+        "cost": 300,
+        "selling_price": 500,
+        "profit": 200
+    },
+    {
+        "SKU": 5,
+        "item_name": "Spaghetti Bolognese",
+        "category": "Pasta",
+        "stock": 5,
+        "cost": 100,
+        "selling_price": 200,
+        "profit": 100
+    },
+    {
+        "SKU": 6,
+        "item_name": "Chicken Alfredo",
+        "category": "Pasta",
+        "stock": 30,
+        "cost": 150,
+        "selling_price": 300,
+        "profit": 150
+    },
+    {
+        "SKU": 7,
+        "item_name": "Caesar Salad",
+        "category": "Salad",
+        "stock": 40,
+        "cost": 80,
+        "selling_price": 150,
+        "profit": 70
+    },
+    {
+        "SKU": 8,
+        "item_name": "Greek Salad",
+        "category": "Salad",
+        "stock": 35,
+        "cost": 90,
+        "selling_price": 170,
+        "profit": 80
+    },
+    {
+        "SKU": 9,
+        "item_name": "Chocolate Cake",
+        "category": "Dessert",
+        "stock": 15,
+        "cost": 200,
+        "selling_price": 350,
+        "profit": 150
+    },
+    {
+        "SKU": 10,
+        "item_name": "Apple Pie",
+        "category": "Dessert",
+        "stock": 20,
+        "cost": 180,
+        "selling_price": 300,
+        "profit": 120
+    },
+    {
+        "SKU": 11,
+        "item_name": "Coke",
+        "category": "Beverage",
+        "stock": 50,
+        "cost": 30,
+        "selling_price": 50,
+        "profit": 20
+    },
+    {
+        "SKU": 12,
+        "item_name": "Orange Juice",
+        "category": "Beverage",
+        "stock": 45,
+        "cost": 40,
+        "selling_price": 70,
+        "profit": 30
+    }
+]
+}

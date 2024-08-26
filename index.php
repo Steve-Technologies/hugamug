@@ -4,17 +4,18 @@ include_once('header.php');
 
 ?>
 
-  <!-- 
+<!-- 
     - preload images
   -->
-  <head>
+
+<head>
   <link rel="preload" as="image" href="./assets/images/hero-slider-1.jpg">
   <link rel="preload" as="image" href="./assets/images/hero-slider-2.jpg">
   <link rel="preload" as="image" href="./assets/images/hero-slider-3.jpg">
-  </head>
+</head>
 
 <body id="top">
- 
+
 
 
 
@@ -30,38 +31,41 @@ include_once('header.php');
       <section class="hero text-center" aria-label="home" id="home">
 
         <ul class="hero-slider" data-hero-slider>
-          <?php 
-          $result=$conn->query("SELECT value FROM elements_data where name='home_sliders'");
+          <?php
+          $result = $conn->query("SELECT value FROM elements_data where name='home_sliders'");
           foreach ($result as $row) {
-             $sliders=json_decode($row['value']);}
+            $sliders = json_decode($row['value']);
+          }
 
-             foreach($sliders as $slider){
+          foreach ($sliders as $slider) {
           ?>
 
-          <li class="slider-item <?php if($slider->id==1){echo'active';}?>" data-hero-slider-item>
+            <li class="slider-item <?php if ($slider->id == 1) {
+                                      echo 'active';
+                                    } ?>" data-hero-slider-item>
 
-            <div class="slider-bg">
-              <img src="<?php echo get_image_from_id($slider->image_id,'large') ?>" width="1880" height="950" alt="" class="img-cover">
-            </div>
+              <div class="slider-bg">
+                <img src="<?php echo get_image_from_id($slider->image_id, 'large') ?>" width="1880" height="950" alt="" class="img-cover">
+              </div>
 
-            <p class="label-2 section-subtitle slider-reveal"><?php echo $slider->smtitle; ?></p>
+              <p class="label-2 section-subtitle slider-reveal"><?php echo $slider->smtitle; ?></p>
 
-            <h1 class="display-1 hero-title slider-reveal">
-            <?php echo $slider->ltitle; ?>
-            </h1>
+              <h1 class="display-1 hero-title slider-reveal">
+                <?php echo $slider->ltitle; ?>
+              </h1>
 
-            <p class="body-2 hero-text slider-reveal">
-            <?php echo $slider->subtitle; ?>
-            </p>
+              <p class="body-2 hero-text slider-reveal">
+                <?php echo $slider->subtitle; ?>
+              </p>
 
-            <a href="#" class="btn btn-hmprimary slider-reveal">
-              <span class="text text-1">View Our Menu</span>
+              <a href="<?php echo $global['domain'] ?>/MainMenuFeb23_web.pdf" class="btn btn-hmprimary slider-reveal">
+                <span class="text text-1">View Our Menu</span>
 
-              <span class="text text-2" aria-hidden="true">View Our Menu</span>
-            </a>
+                <span class="text text-2" aria-hidden="true">View Our Menu</span>
+              </a>
 
-          </li>
-          <?php } 
+            </li>
+          <?php }
           ?>
 
 
@@ -75,7 +79,7 @@ include_once('header.php');
           <ion-icon name="chevron-forward"></ion-icon>
         </button>
 
-        <a href="#" class="hero-btn has-after">
+        <a href="https://wa.me/255759552555?text=Hello!%20I%20would%20like%20to%20make%20a%20reservation%20please." class="hero-btn has-after">
           <img src="./assets/images/hero-icon.png" width="48" height="48" alt="booking icon">
 
           <span class="label-2 text-center span">Book A Table</span>
@@ -94,13 +98,14 @@ include_once('header.php');
       <section class="section service bg-black-10 text-center" aria-label="service">
         <div class="container">
 
-          <p class="section-subtitle label-2">Flavors For Royalty</p>
+          <p class="section-subtitle label-2">Flavour of international cuisine </p>
 
-          <h2 class="headline-1 section-title">We Offer Top Notch</h2>
+          <h2 class="headline-1 section-title">We Offer Top notch Culinary Experience </h2>
 
           <p class="section-text">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry lorem Ipsum has been the industrys
-            standard dummy text ever.
+            At Hug a Mug Café & Restaurant, we believe that every meal should be an experience. Whether you're startng your day with our hearty
+            Signature breakfast, enjoying our flavourful appetizers, or savouring a handcrafted cocktail, we are dedicated to serving you top-notch flavours that delight your
+            taste buds.
           </p>
 
           <ul class="grid-list">
@@ -120,8 +125,10 @@ include_once('header.php');
                   <h3 class="title-4 card-title">
                     <a href="#">Breakfast</a>
                   </h3>
+                  <h5>Our breakfast menu is designed to start your day right with wholesome and delicious options. From fluffy pancakes to freshly brewed coffee, every dish
+                    is made to fuel your morning.</h5>
 
-                  <a href="./menu" class="btn-text hover-underline label-2">View Menu</a>
+                  <a href="<?php echo $global['domain'] ?>/MainMenuFeb23_web.pdf" class="btn-text hover-underline label-2">View Menu</a>
 
                 </div>
 
@@ -143,8 +150,10 @@ include_once('header.php');
                   <h3 class="title-4 card-title">
                     <a href="#">Appetizers</a>
                   </h3>
+                  <h5>Indulge in our selecƟon of appeƟzers that are perfect for sharing or enjoying on your own. From crispy calamari to spicy wings, our appetizers are
+                    crafted to excite your palate.</h5>
 
-                  <a href="./menu" class="btn-text hover-underline label-2">View Menu</a>
+                  <a href="<?php echo $global['domain'] ?>/MainMenuFeb23_web.pdf" class="btn-text hover-underline label-2">View Menu</a>
 
                 </div>
 
@@ -166,8 +175,10 @@ include_once('header.php');
                   <h3 class="title-4 card-title">
                     <a href="#">Drinks</a>
                   </h3>
+                  <h5>Quench your thirst with our refreshing drinks. Whether you’re in the mood for a classic cocktail, a healthful smoothie, or a freshly squeezed juice, our
+                    drinks menu has something for everyone.</h5>
 
-                  <a href="./menu" class="btn-text hover-underline label-2">View Menu</a>
+                  <a href="<?php echo $global['domain'] ?>/MainMenuFeb23_web.pdf" class="btn-text hover-underline label-2">View Menu</a>
 
                 </div>
 
@@ -303,55 +314,55 @@ include_once('header.php');
 
           <p class="section-subtitle text-center label-2">Special Selection</p>
 
-          <h2 class="headline-1 section-title text-center">Delicious Menu</h2>
+          <h2 class="headline-1 section-title text-center">Monthly Specials</h2>
 
           <ul class="grid-list">
 
-          <?php  
-          $sql = "SELECT * FROM products";
-          $result = $conn->query($sql);
-          foreach ($result as $row) {
-            $row['price']=formatPrice($row['price'])
-    ?>
-  
-            <li>
-              <div class="menu-card hover:card">
+            <?php
+            $sql = "SELECT * FROM products";
+            $result = $conn->query($sql);
+            foreach ($result as $row) {
+              $row['price'] = formatPrice($row['price'])
+            ?>
 
-                <figure class="card-banner img-holder" style="width: 100px; height: 100px;">
-                  <img src="<?php echo get_image_from_id($row['img_id'],'thumbnail')?>" width="100" height="100" loading="lazy" alt="<?php echo $row['name'] ?>"
-                    class="img-cover" style="position: absolute;width:100px;height:100px;z-index:1;">
-                </figure>
+              <li>
+                <div class="menu-card hover:card">
 
-                <div style="width: 100%;">
+                  <figure class="card-banner img-holder" style="width: 100px; height: 100px;">
+                    <img src="<?php echo get_image_from_id($row['img_id'], 'thumbnail') ?>" width="100" height="100" loading="lazy" alt="<?php echo $row['name'] ?>"
+                      class="img-cover" style="position: absolute;width:100px;height:100px;z-index:1;">
+                  </figure>
 
-                  <div class="title-wrapper">
-                    <h3 class="title-3">
-                      <a href="#" class="card-title"><?php echo $row['name'] ?></a>
-                    </h3>
+                  <div style="width: 100%;">
 
-                    <span class="span title-2"><?php echo $global['currency_symbol'] ?> <?php echo $row['price'] ?></span>
-                  </div>
-                  <div class="qty-wrap">
-                  <!-- <button class="qtybtn ">-</button>
+                    <div class="title-wrapper">
+                      <h3 class="title-3">
+                        <a href="#" class="card-title"><?php echo $row['name'] ?></a>
+                      </h3>
+
+                      <span class="span title-2"><?php echo $global['currency_symbol'] ?> <?php echo $row['price'] ?></span>
+                    </div>
+                    <div class="qty-wrap">
+                      <!-- <button class="qtybtn ">-</button>
                     <span class="title-3">0</span> -->
-                    <button class="qtybtn" value=<?php echo $row['id']?> data-operation='add'  data-place='catalogue' onclick="mod_cart_cat(this)">Add to Cart</button>
-                    <button class="qtybtn" value=<?php echo $row['id']?>  onclick="display_details(this)">View More</button>
-                  </div>
-                  <p class="card-text label-1">
-                  <?php echo $row['short_desc'] ?>
-                  </p>
-                  <?php 
-                    if($row['labels']!=''){ ?>
-                    <span class="badge label-1"><?php echo $row['labels'] ?></span>
+                      <button class="qtybtn" value=<?php echo $row['id'] ?> data-operation='add' data-place='catalogue' onclick="mod_cart_cat(this)">Add to Cart</button>
+                      <button class="qtybtn" value=<?php echo $row['id'] ?> onclick="display_details(this)">View More</button>
+                    </div>
+                    <p class="card-text label-1">
+                      <?php echo $row['short_desc'] ?>
+                    </p>
+                    <?php
+                    if ($row['labels'] != '') { ?>
+                      <span class="badge label-1"><?php echo $row['labels'] ?></span>
                     <?php  } ?>
-                </div>
+                  </div>
 
-              </div>
-            </li>
+                </div>
+              </li>
 
             <?php
-          }
-?>
+            }
+            ?>
           </ul>
 
           <p class="menu-text text-center">
@@ -379,35 +390,68 @@ include_once('header.php');
       <!-- 
         - #TESTIMONIALS
       -->
+      <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
 
       <section class="section testi text-center has-bg-image"
         style="background-image: url('./assets/images/testimonial-bg.jpg')" aria-label="testimonials">
-        <div class="container">
+        <div class="container swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="quote">”</div>
 
-          <div class="quote">”</div>
+              <p class="headline-2 testi-text">
+                I wanted to thank you for inviting me down for that amazing dinner the other night. The food was
+                extraordinary.
+              </p>
 
-          <p class="headline-2 testi-text">
-            I wanted to thank you for inviting me down for that amazing dinner the other night. The food was
-            extraordinary.
-          </p>
+              <div class="wrapper">
+                <div class="separator"></div>
+                <div class="separator"></div>
+                <div class="separator"></div>
+              </div>
 
-          <div class="wrapper">
-            <div class="separator"></div>
-            <div class="separator"></div>
-            <div class="separator"></div>
+              <div class="profile">
+                <img src="./assets/images/testi-avatar.jpg" width="100" height="100" loading="lazy" alt="Sam Jhonson"
+                  class="img">
+
+                <p class="label-2 profile-name">Sam Jhonson</p>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="quote">”</div>
+
+              <p class="headline-2 testi-text">
+                I wanted 2 to thank you for inviting me down for that amazing dinner the other night. The food was
+                extraordinary.
+              </p>
+
+              <div class="wrapper">
+                <div class="separator"></div>
+                <div class="separator"></div>
+                <div class="separator"></div>
+              </div>
+
+              <div class="profile">
+                <img src="./assets/images/testi-avatar.jpg" width="100" height="100" loading="lazy" alt="Sam Jhonson"
+                  class="img">
+
+                <p class="label-2 profile-name">Sam Jhonson</p>
+              </div>
+            </div>
           </div>
+          <div class="swiper-pagination"></div>
 
-          <div class="profile">
-            <img src="./assets/images/testi-avatar.jpg" width="100" height="100" loading="lazy" alt="Sam Jhonson"
-              class="img">
-
-            <p class="label-2 profile-name">Sam Jhonson</p>
-          </div>
+          <!-- If we need navigation buttons -->
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
 
         </div>
       </section>
 
-
+      <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 
 
@@ -425,8 +469,7 @@ include_once('header.php');
               <h2 class="headline-1 text-center">Online Reservation</h2>
 
               <p class="form-text text-center">
-                Booking request <a href="tel:<?php echo $global['contact_no'] ?>" class="link"><?php echo $global['contact_no'] ?></a>
-                or fill out the order form
+                To make a reservation, please fill out the form below. We look forward to hosting you!<br>For Booking request fill out the order form below.
               </p>
 
               <div class="input-wrapper">
@@ -499,7 +542,7 @@ include_once('header.php');
 
             <div class="form-right text-center" style="background-image: url('./assets/images/form-pattern.png')">
 
-              <h2 class="headline-1 text-center">Contact Us</h2>
+              <h2 id="contact" class="headline-1 text-center">Contact Us</h2>
 
               <p class="contact-label">Booking Request</p>
 
@@ -510,14 +553,14 @@ include_once('header.php');
               <p class="contact-label">Location</p>
 
               <address class="body-4">
-              <?php echo $global['address'] ?>
+                <a href="https://maps.app.goo.gl/y44wfsLYBoTPFT9D8" class="linka"><?php echo $global['address'] ?></a>
               </address>
 
               <p class="contact-label">Lunch Time</p>
 
               <p class="body-4">
-                Monday to Sunday <br>
-                11.00 am - 2.30pm
+                Thursday to Tuesday <br>
+                08:00 - 23:30
               </p>
 
               <p class="contact-label">Dinner Time</p>
@@ -527,6 +570,9 @@ include_once('header.php');
                 05.00 pm - 10.00pm
               </p>
 
+            </div>
+            <div class="mapdiv">
+            <iframe class="gmap_iframe" style="position: absolute; height: 100%; border: none" width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=Hug a Mug Cafe, Tanzania&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
             </div>
 
           </div>
@@ -542,7 +588,7 @@ include_once('header.php');
         - #FEATURES
       -->
 
-      <section class="section features text-center" aria-label="features">
+      <section class="section features text-center" aria-label="features" style="display: none;">
         <div class="container">
 
           <p class="section-subtitle label-2">Why Choose Us</p>
@@ -639,17 +685,17 @@ include_once('header.php');
               <div class="event-card has-before hover:shine">
 
                 <div class="card-banner img-holder" style="--width: 350; --height: 450;">
-                  <img src="./assets/images/event-1.jpg" width="350" height="450" loading="lazy"
+                  <img src="./assets/images/blogs/games_night.jpg" width="350" height="450" loading="lazy"
                     alt="Flavour so good you’ll try to eat with your eyes." class="img-cover">
 
                   <time class="publish-date label-2" datetime="2022-09-15">15/09/2022</time>
                 </div>
 
                 <div class="card-content">
-                  <p class="card-subtitle label-2 text-center">Food, Flavour</p>
+                  <p class="card-subtitle label-2 text-center">Games Night</p>
 
                   <h3 class="card-title title-2 text-center">
-                    Flavour so good you’ll try to eat with your eyes.
+                  Every Saturday night in August
                   </h3>
                 </div>
 
@@ -660,17 +706,17 @@ include_once('header.php');
               <div class="event-card has-before hover:shine">
 
                 <div class="card-banner img-holder" style="--width: 350; --height: 450;">
-                  <img src="./assets/images/event-2.jpg" width="350" height="450" loading="lazy"
-                    alt="Flavour so good you’ll try to eat with your eyes." class="img-cover">
+                  <img src="./assets/images/blogs/rotary_club_bahari_meeting.jpg" width="350" height="450" loading="lazy"
+                    alt="Flavour so good you’ll try to eat with your eyes." class="img-cover overlaycs">
 
                   <time class="publish-date label-2" datetime="2022-09-08">08/09/2022</time>
                 </div>
 
                 <div class="card-content">
-                  <p class="card-subtitle label-2 text-center">Healthy Food</p>
+                  <p class="card-subtitle label-2 text-center">Rotary Club Bahari MeeƟng</p>
 
                   <h3 class="card-title title-2 text-center">
-                    Flavour so good you’ll try to eat with your eyes.
+                  Thursday mornings.
                   </h3>
                 </div>
 
@@ -721,5 +767,5 @@ include_once('header.php');
 </body>
 
 </html>
-<?php 
+<?php
 include_once('footer.php'); ?>

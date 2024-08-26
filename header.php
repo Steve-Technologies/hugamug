@@ -85,7 +85,16 @@
 
         <span class="span"><?php echo $global['mail'] ?></span>
       </a>
-
+      <a href="<?php echo $global['instagram'] ?>" class="topbar-item link">
+        <div class="span">
+        <ion-icon name="logo-instagram" aria-hidden="true"></ion-icon>
+        </div>
+      </a>
+      <a href="<?php echo $global['instagram'] ?>" class="topbar-item link">
+        <div class="span">
+        <ion-icon name="logo-facebook" aria-hidden="true"></ion-icon>
+        </div>
+      </a>
     </div>
   </div>
 
@@ -125,7 +134,7 @@
           </li>
 
           <li class="navbar-item">
-            <a href="<?php echo $global['domain'] ?>/menu" class="navbar-link hover-underline <?php echo (basename($_SERVER['PHP_SELF'])=="menu.php")?'active':''?>">
+            <a href="<?php echo $global['domain'] ?>/MainMenuFeb23_web.pdf" class="navbar-link hover-underline <?php echo (basename($_SERVER['PHP_SELF'])=="menu.php")?'active':''?>">
               <div class="separator"></div>
 
               <span class="span">Menus</span>
@@ -133,7 +142,7 @@
           </li>
 
           <li class="navbar-item">
-            <a href="<?php echo $global['domain'] ?>#about" class="navbar-link hover-underline <?php echo (basename($_SERVER['PHP_SELF'])=="about.php")?'active':''?>">
+            <a href="<?php echo $global['domain'] ?>/#about" class="navbar-link hover-underline <?php echo (basename($_SERVER['PHP_SELF'])=="about.php")?'active':''?>">
               <div class="separator"></div>
 
               <span class="span">About Us</span>
@@ -144,17 +153,24 @@
             <a href="#" class="navbar-link hover-underline">
               <div class="separator"></div>
 
-              <span class="span">Our Chefs</span>
+              <span class="span">Our Team</span>
+            </a>
+          </li>
+          <li class="navbar-item">
+            <a href="<?php echo $global['domain'] ?>/#contact" class="navbar-link hover-underline <?php echo (basename($_SERVER['PHP_SELF'])=="about.php")?'active':''?>">
+              <div class="separator"></div>
+
+              <span class="span">Contact Us</span>
             </a>
           </li>
 
-          <li class="navbar-item">
+          <!-- <li class="navbar-item">
             <a href="#" class="navbar-link hover-underline <?php echo (basename($_SERVER['PHP_SELF'])=="contact.php")?'active':''?>">
               <div class="separator"></div>
 
               <span class="span">Contact</span>
             </a>
-          </li>
+          </li> -->
 
         </ul>
 
@@ -162,7 +178,7 @@
           <p class="headline-1 navbar-title">Visit Us</p>
 
           <address class="body-4">
-          <?php echo $global['address'] ?>
+          <a class="linka" href="<?php echo $global['google_maps'] ?>"><?php echo $global['address'] ?></a>
           </address>
 
           <p class="body-4 navbar-text"><?php echo $global['opening_schedule'] ?></p>
@@ -173,14 +189,26 @@
 
           <p class="contact-label">Booking Request</p>
 
-          <a href="tel:<?php echo $global['contact_no'] ?>" class="body-1 contact-number hover-underline">
+          <a href="tel:<?php echo $global['contact_no'] ?>" class="body-1 contact-number">
           <?php echo $global['contact_no'] ?>
           </a>
+          <div class="mobilehsocials">
+          <a href="<?php echo $global['instagram'] ?>" class="topbar-item link">
+        <div class="span">
+        <ion-icon name="logo-instagram" aria-hidden="true"></ion-icon>
+        </div>
+      </a>
+      <a href="<?php echo $global['instagram'] ?>" class="topbar-item link">
+        <div class="span">
+        <ion-icon name="logo-facebook" aria-hidden="true"></ion-icon>
+        </div>
+      </a>
+      </div>
         </div>
 
       </nav>
 
-      <a href="#" class="btn btn-secondary">
+      <a href="https://wa.me/255759552555?text=Hello!%20I%20would%20like%20to%20make%20a%20reservation%20please." class="btn btn-secondary">
         <span class="text text-1">Find A Table</span>
 
         <span class="text text-2" aria-hidden="true">Find A Table</span>
